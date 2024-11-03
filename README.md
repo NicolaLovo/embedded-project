@@ -22,6 +22,7 @@ Place the TI driverlib `source` folder inside the `driverlib` folder like this:
 
 ![Driverlib location](./docs/driverLibLocation.png)
 
+> You can download the driverlib folder from [here](https://drive.google.com/file/d/1w_YTRS9HwMnIs1PKtQFa6hqd9J2PM_93/view?usp=sharing)
 
 ### Building the project
 
@@ -42,3 +43,4 @@ ARM linker file search path options:
 ## Project documentation
 
 - [Requirements document](https://docs.google.com/document/d/1dMhPBvmx1WDsUFHWIUvdtsMsZ3I_5LDLPtr0CWYLqqE/edit?usp=sharing)
+- [Project diagram](https://drive.google.com/file/d/1CTdshm4JGh88nT_NAp6nMx0BeLaoV-mB/view?usp=sharing)
