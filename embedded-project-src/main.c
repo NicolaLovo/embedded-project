@@ -6,6 +6,15 @@
 #include "features/radiator/events.h"
 #include "features/radiator/fsm.h"
 
+#include "sensors/light/sensor_hw.h"
+
+
+void hw_init(void) {
+    // Initialize the light sensor
+    light_hw_init();
+
+}
+
 
 /**
  * main.c
