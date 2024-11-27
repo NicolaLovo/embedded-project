@@ -1,10 +1,14 @@
 eclipse.preferences.version=1
 encoding//Debug/features/allarm/subdir_rules.mk=UTF-8
 encoding//Debug/features/allarm/subdir_vars.mk=UTF-8
+encoding//Debug/features/climate/subdir_rules.mk=UTF-8
+encoding//Debug/features/climate/subdir_vars.mk=UTF-8
 encoding//Debug/features/door/subdir_rules.mk=UTF-8
 encoding//Debug/features/door/subdir_vars.mk=UTF-8
 encoding//Debug/features/frontDoorLight/subdir_rules.mk=UTF-8
 encoding//Debug/features/frontDoorLight/subdir_vars.mk=UTF-8
+encoding//Debug/features/irrigation/subdir_rules.mk=UTF-8
+encoding//Debug/features/irrigation/subdir_vars.mk=UTF-8
 encoding//Debug/features/radiator/subdir_rules.mk=UTF-8
 encoding//Debug/features/radiator/subdir_vars.mk=UTF-8
 encoding//Debug/makefile=UTF-8

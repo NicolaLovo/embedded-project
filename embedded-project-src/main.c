@@ -3,8 +3,8 @@
 #include "features/door/fsm.h"
 #include "features/door/events.h"
 
-#include "features/radiator/events.h"
-#include "features/radiator/fsm.h"
+#include "features/climate/events.h"
+#include "features/climate/fsm.h"
 
 #include "sensors/light/sensor_hw.h"
 
