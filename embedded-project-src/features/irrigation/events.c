@@ -47,8 +47,8 @@ void irrigation_event_button_on(void){
     switch (irrigation_current_state) {
         case IRRIGATION_STATE_IDLE:
         case IRRIGATION_STATE_INIT:
-        case IRRIGATION_STATE_IRRIGATE:
-          irrigation_current_state = IRRIGATION_STATE_IRRIGATE;
+        irrigation_current_state = IRRIGATION_STATE_IRRIGATE;
+        case IRRIGATION_STATE_IRRIGATE: break;  // irrigation is already active
     }
 }
 
