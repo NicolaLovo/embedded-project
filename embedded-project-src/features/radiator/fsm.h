@@ -1,5 +1,5 @@
-#ifndef FEATURES_RADIATOR_FSM_H_
-#define FEATURES_RADIATOR_FSM_H_
+#ifndef FEATURES_CLIMATE_FSM_H_
+#define FEATURES_CLIMATE_FSM_H_
 
 #include "events.h"
 
