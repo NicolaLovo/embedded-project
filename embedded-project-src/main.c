@@ -3,6 +3,9 @@
 #include "features/door/fsm.h"
 #include "features/door/events.h"
 
+#include "features/irrigation/fsm.h"
+#include "features/irrigation/events.h"
+
 #include "features/climate/events.h"
 #include "features/climate/fsm.h"
 
@@ -27,6 +30,9 @@ void main(void)
     while(1){
         if(door_current_state < DOOR_NUM_STATES){
             (*door_fsm[door_current_state].state_function)();
+        }
+        if(irrigation_current_state < IRRIGATION_NUM_STATES){
+            (*irrigation_fsm[irrigation_current_state].state_function)();
         }
     }
     
