@@ -1,5 +1,6 @@
 #include "sensor_hw.h"
 #include "sensor_on_read.h" 
+#include <stdint.h>
 
 void climate_sensor_hw_init(void){
     //init I2C and sensor TMP006
