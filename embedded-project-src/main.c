@@ -23,6 +23,9 @@ void hw_init(void) {
     // Initialize the light sensor
     light_hw_init();
 
+    // Initialize the buzzer
+    buzzer_hw_init();
+
 }
 
 
@@ -33,6 +36,8 @@ void main(void)
 {
 
 	WDT_A->CTL = WDT_A_CTL_PW | WDT_A_CTL_HOLD;		// stop watchdog timer
+
+	hw_init();
 
     while(1){
         if(door_current_state < DOOR_NUM_STATES){
@@ -47,6 +52,14 @@ void main(void)
         if(front_door_current_state < FRONT_DOOR_LIGHT_NUM_STATES){
             (*front_door_fsm[front_door_current_state].state_function)();
         }
+
+
+        //buzzer_on(); //Worka
+
+        //buzzer_off(); //Worka in qualche maniera, ma non credo sia corretto come l'ho fatto haha
+
+
+
 
     }
     

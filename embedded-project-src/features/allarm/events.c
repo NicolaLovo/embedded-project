@@ -1,5 +1,5 @@
-#include "fsm.h"
-#include "events.h"
+#include "features/allarm/events.h"
+#include "features/allarm/fsm.h"
 
 void allarm_event_onContact(void){
 

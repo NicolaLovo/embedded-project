@@ -23,4 +23,4 @@ extern Allarm_state_t allarm_current_state;
 extern Allarm_stateMachine_t allarm_fsm[];
 
 
-#endif __ALLARM_FSM_H__
+#endif
