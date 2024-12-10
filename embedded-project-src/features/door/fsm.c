@@ -4,7 +4,9 @@
 
 void fn_door_init(){
     // hardware init...
-    door_current_state = DOOR_STATE_CLOSE;
+    //door_current_state = DOOR_STATE_CLOSE;
+
+    door_current_state = DOOR_STATE_OPEN;
 }
 
 void fn_door_open(){

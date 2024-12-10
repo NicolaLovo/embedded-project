@@ -12,7 +12,7 @@ void door_event_skyDark(void) {
 
 void door_event_button_open(void) {
     if (door_current_state == DOOR_STATE_CLOSE) {
-        door_current_state = DOOR_STATE_OPEN;
+        door_current_state = DOOR_STATE_FORCE_OPEN;
         return;
     }
 }
@@ -25,7 +25,7 @@ void door_event_button_close(void) {
 }
 
 void door_event_earthquake_start(void) {
-    if (door_current_state == DOOR_STATE_CLOSE || door_current_state == DOOR_STATE_OPEN) {
+    if (door_current_state == DOOR_STATE_CLOSE) {
         door_current_state = DOOR_STATE_FORCE_OPEN;
         return;
     }

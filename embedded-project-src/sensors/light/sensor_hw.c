@@ -13,3 +13,7 @@ void light_hw_init(void) {
 
 // todo: what is the light sensor isr routine?
 
+float read_light(void) {
+    float lux = OPT3001_getLux();
+    return lux;
+}
