@@ -20,6 +20,8 @@
 #include "sensors/allarm/sensor_hw.h"
 #include "sensors/doorButton/sensor_hw.h"
 
+#include "outputs/servo/servo_hw.h"
+
 
 void hw_init(void) {
     // Initialize the light sensor
@@ -30,6 +32,9 @@ void hw_init(void) {
 
     // Initialize door button
     door_button_hw_init();
+
+
+    servo_hw_init();
 
 }
 
@@ -72,7 +77,11 @@ void main(void)
 
         //buzzer_off(); //Worka in qualche maniera, ma non credo sia corretto come l'ho fatto haha
 
+        //rotate_servo_angle(0);    // Rotate to 0°
 
+          //rotate_servo_angle(90);   // Rotate to 90°
+
+          //rotate_servo_angle(180);  // Rotate to 180°
 
 
     }
