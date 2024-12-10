@@ -6,7 +6,7 @@ void fn_irrigation_init(){
     irrigation_current_state = IRRIGATION_STATE_IDLE;
 }
 void fn_irrigation_idle(void){
-
+    // timer not counting
 }
 void fn_irrigation_on(void){
     // hardware init... turn blue led on, timer counting
