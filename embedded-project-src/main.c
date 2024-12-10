@@ -16,7 +16,9 @@
 #include "features/frontDoorLight/fsm.h"
 
 #include "sensors/light/sensor_hw.h"
+#include "sensors/light/sensor_on_read.h"
 #include "sensors/allarm/sensor_hw.h"
+#include "sensors/doorButton/sensor_hw.h"
 
 
 void hw_init(void) {
@@ -26,8 +28,12 @@ void hw_init(void) {
     // Initialize the buzzer
     buzzer_hw_init();
 
+    // Initialize door button
+    door_button_hw_init();
+
 }
 
+float lux;
 
 /**
  * main.c
@@ -52,6 +58,14 @@ void main(void)
         if(front_door_current_state < FRONT_DOOR_LIGHT_NUM_STATES){
             (*front_door_fsm[front_door_current_state].state_function)();
         }
+
+        /**
+         * Polling: not the best solution but for now we do not know how to use interrupts
+         */
+        lux = read_light();
+        light_on_read(lux);
+
+
 
 
         //buzzer_on(); //Worka

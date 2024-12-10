@@ -2,8 +2,8 @@
 #define __LIGHT_ON_READ_H__
 
 
-#define DARK_THRESHOLD 1000
-#define BRIGHT_THRESHOLD 2000
+#define DARK_THRESHOLD 80
+#define BRIGHT_THRESHOLD 100
 
 /**
  * Hw-independent function to be called by the light isr

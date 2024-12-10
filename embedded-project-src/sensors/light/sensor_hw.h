@@ -8,4 +8,6 @@
  */
 void light_hw_init(void);
 
+float read_light(void);
+
 #endif
