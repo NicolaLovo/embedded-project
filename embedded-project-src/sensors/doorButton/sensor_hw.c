@@ -11,7 +11,7 @@ void door_button_hw_init(void) {
     // enable interrupts for port
     Interrupt_enableInterrupt(DOOR_BUTTON_INTERRUPT_PORT);
 
-    /* activate interrupt notification */
+    // activate interrupt notification
     Interrupt_enableMaster();
 }
 
