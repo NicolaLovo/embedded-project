@@ -19,6 +19,8 @@
 #include "sensors/light/sensor_on_read.h"
 #include "sensors/allarm/sensor_hw.h"
 #include "sensors/doorButton/sensor_hw.h"
+#include "sensors/accelerometer/sensor_hw.h"
+#include "sensors/accelerometer/sensor_on_read.h"
 
 #include "outputs/servo/servo_hw.h"
 
@@ -33,6 +35,8 @@ void hw_init(void) {
     // Initialize door button
     door_button_hw_init();
 
+    // Initialize accelerometer
+    accelerometer_hw_init();
 
     servo_hw_init();
 
@@ -70,7 +74,7 @@ void main(void)
         lux = read_light();
         light_on_read(lux);
 
-
+        PCM_gotoLPM0();
 
 
         //buzzer_on(); //Worka
