@@ -33,7 +33,7 @@ void buzzer_hw_init(void)
   GPIO_setAsPeripheralModuleFunctionOutputPin(GPIO_PORT_P2, GPIO_PIN7, GPIO_PRIMARY_MODULE_FUNCTION);
 
   /* Configuring Timer_A0 for Up Mode and starting */
-  Timer_A_configureUpMode(TIMER_A0_BASE, &upConfig);
+  Timer_A_configureUpMode(TIMER_A3_BASE, &upConfig);
   // Timer_A_startCounter(TIMER_A0_BASE, TIMER_A_UP_MODE);
 
   /* Initialize compare registers to generate PWM */
@@ -42,13 +42,13 @@ void buzzer_hw_init(void)
 
 void buzzer_on(void)
 {
-  Timer_A_startCounter(TIMER_A0_BASE, TIMER_A_UP_MODE);
+  Timer_A_startCounter(TIMER_A3_BASE, TIMER_A_UP_MODE);
   //Timer_A_setCompareValue(TIMER_A0_BASE, TIMER_A_CAPTURECOMPARE_REGISTER_4, 20000); // 100% Duty Cycle waht is this?
-  Timer_A_initCompare(TIMER_A0_BASE, &compareConfig_PWM);
+  Timer_A_initCompare(TIMER_A3_BASE, &compareConfig_PWM);
 }
 
 void buzzer_off(void)
 {
   //Timer_A_stopCounter(TIMER_A0_BASE, TIMER_A_UP_MODE);
-    Timer_A_initCompare(TIMER_A0_BASE, &compareConfig_PWM2);
+    Timer_A_initCompare(TIMER_A3_BASE, &compareConfig_PWM2);
 }
