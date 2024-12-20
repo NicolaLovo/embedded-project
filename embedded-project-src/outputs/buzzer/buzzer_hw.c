@@ -1,4 +1,5 @@
-#include "sensor_hw.h"
+#include "buzzer_hw.h"
+
 #include <ti/devices/msp432p4xx/driverlib/driverlib.h>
 #include <ti/devices/msp432p4xx/inc/msp.h>
 

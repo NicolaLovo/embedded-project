@@ -17,10 +17,10 @@
 
 #include "sensors/light/sensor_hw.h"
 #include "sensors/light/sensor_on_read.h"
-#include "sensors/allarm/sensor_hw.h"
 #include "sensors/doorButton/sensor_hw.h"
 
 #include "outputs/servo/servo_hw.h"
+#include "outputs/buzzer/buzzer_hw.h"
 
 
 void hw_init(void) {
