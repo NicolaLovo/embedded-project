@@ -18,7 +18,7 @@ void fn_door_close(){
 }
 
 void fn_door_force_open(){
-    rotate_servo_angle(90)
+    rotate_servo_angle(90);
 }
 
 extern Door_State_t door_current_state = DOOR_STATE_INIT;
