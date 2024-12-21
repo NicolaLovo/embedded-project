@@ -3,7 +3,6 @@
 
 #include <ti/devices/msp432p4xx/driverlib/driverlib.h>
 
-
 /**
  * Contains hardware specific code:
  * - accelerometer initialization

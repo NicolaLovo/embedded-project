@@ -12,11 +12,56 @@ void accelerometer_on_read(uint16_t resultsBuffer[3]) {
     uint16_t y = resultsBuffer[1];
     uint16_t z = resultsBuffer[2];
 
-    /* Defining the conditions for earthquake in each direction */
-    bool over_high_thrsd = x > HIGH_THRSD || y > HIGH_THRSD || z > HIGH_THRSD;
-    bool under_low_thrsd = x < LOW_THRSD  || y < LOW_THRSD  || z < LOW_THRSD;
+    static EarthquakeState state = IDLE;
+    static int stabilityCounter = 0;
 
+    /* Check for significant movement */
+            bool significantMovement = (x > HIGH_THRSD || y > HIGH_THRSD || z > HIGH_THRSD) ||
+                                       (x < LOW_THRSD || y < LOW_THRSD || z < LOW_THRSD);
 
+            switch (state)
+            {
+            case IDLE:
+                if (significantMovement) {
+                    state = ACTIVE;
+                    stabilityCounter = 0;
+                    printf("\n--- EARTHQUAKE START detected ---\n");
+                    //printf("X: %u, Y: %u, Z: %u\n", x, y, z);
+
+                    /* Trigger door event */
+                    if (door_current_state == DOOR_STATE_CLOSE) {
+                        door_event_earthquake_start();
+                    }
+                }
+                break;
+
+            case ACTIVE:
+                if (significantMovement) {
+                    stabilityCounter = 0; // Reset stability counter if detecting activity
+                } else {
+                    stabilityCounter++;
+                    if (stabilityCounter >= STABILITY_COUNT) {
+                        state = STABILIZING;
+                        stabilityCounter = 0;
+                        printf("--- EARTHQUAKE END detected ---\n");
+
+                        /* Trigger door event */
+                        if (door_current_state == DOOR_STATE_CLOSE) {
+                            door_event_earthquake_end();
+                       }
+                    }
+                }
+                break;
+
+            case STABILIZING:
+                stabilityCounter++;
+                if (stabilityCounter >= STABILITY_COUNT) {
+                    state = IDLE; // Ready to detect new earthquake
+                }
+                break;
+            }
+
+/*
     if (over_high_thrsd || under_low_thrsd){
         printf("--- EARTHQUAKE detected ---\n");
         //printf("X: %u, Y: %u, Z: %u\n", resultsBuffer[0], resultsBuffer[1], resultsBuffer[2]);
@@ -25,6 +70,6 @@ void accelerometer_on_read(uint16_t resultsBuffer[3]) {
             return;
         }
     }
-
+*/
 
 }
