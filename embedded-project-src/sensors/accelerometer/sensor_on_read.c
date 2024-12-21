@@ -7,15 +7,22 @@
 
 
 void accelerometer_on_read(uint16_t resultsBuffer[3]) {
-    /* Check if earthquake was detected */
-    bool movement_detected = resultsBuffer[2] > UP_THRESHOLD || resultsBuffer[2] < DOWN_THRESHOLD ||
-                             resultsBuffer[0] < LEFT_THRESHOLD || resultsBuffer[0] > RIGHT_THRESHOLD ||
-                             resultsBuffer[1] > FORWARD_THRESHOLD || resultsBuffer[1] < BACKWARD_THRESHOLD;
-    if(movement_detected){
-        printf("--- earthquake detected!!! ---\n");
+
+    uint16_t x = resultsBuffer[0];
+    uint16_t y = resultsBuffer[1];
+    uint16_t z = resultsBuffer[2];
+
+    /* Defining the conditions for earthquake in each direction */
+    bool over_high_thrsd = x > HIGH_THRSD || y > HIGH_THRSD || z > HIGH_THRSD;
+    bool under_low_thrsd = x < LOW_THRSD  || y < LOW_THRSD  || z < LOW_THRSD;
+
+
+    if (over_high_thrsd || under_low_thrsd){
+        printf("--- EARTHQUAKE detected ---");
+        //printf("X: %u, Y: %u, Z: %u\n", resultsBuffer[0], resultsBuffer[1], resultsBuffer[2]);
         if (door_current_state == DOOR_STATE_CLOSE) {
-               door_event_earthquake_start();
-               return;
+            door_event_earthquake_start();
+            return;
         }
         _delay_cycles(5000000);
     }
