@@ -89,8 +89,6 @@ void main(void)
         lux = read_light();
         light_on_read(lux);
 
-        PCM_gotoLPM0();
-
 
         buzzer_on(); //Worka
 
