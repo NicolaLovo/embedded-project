@@ -1,5 +1,5 @@
 #include "features/door/fsm.h"
-
+#include "outputs/servo/servo_hw.h"
 
 
 void fn_door_init(){
@@ -10,14 +10,15 @@ void fn_door_init(){
 }
 
 void fn_door_open(){
-
+    rotate_servo_angle(90);
 }
 
 void fn_door_close(){
-
+    rotate_servo_angle(0);
 }
 
 void fn_door_force_open(){
+    rotate_servo_angle(90);
 }
 
 extern Door_State_t door_current_state = DOOR_STATE_INIT;

@@ -17,12 +17,12 @@
 
 #include "sensors/light/sensor_hw.h"
 #include "sensors/light/sensor_on_read.h"
-#include "sensors/allarm/sensor_hw.h"
 #include "sensors/doorButton/sensor_hw.h"
 #include "sensors/accelerometer/sensor_hw.h"
 #include "sensors/accelerometer/sensor_on_read.h"
 
 #include "outputs/servo/servo_hw.h"
+#include "outputs/buzzer/buzzer_hw.h"
 
 
 void hw_init(void) {
@@ -54,6 +54,21 @@ void main(void)
 
 	hw_init();
 
+
+	//  while (1) {
+    //     // Move to 0ï¿½ position
+    //     rotate_servo_angle(0);
+    //     __delay_cycles(3000000); // 3-second delay
+
+    //     // Move to 90ï¿½ position
+    //     rotate_servo_angle(90);
+    //     __delay_cycles(3000000); // 3-second delay
+
+    //     // Move to 180ï¿½ position
+    //     rotate_servo_angle(180);
+    //     __delay_cycles(3000000); // 3-second delay
+    // }
+
     while(1){
         if(door_current_state < DOOR_NUM_STATES){
             (*door_fsm[door_current_state].state_function)();
@@ -77,15 +92,15 @@ void main(void)
         PCM_gotoLPM0();
 
 
-        //buzzer_on(); //Worka
+        buzzer_on(); //Worka
 
         //buzzer_off(); //Worka in qualche maniera, ma non credo sia corretto come l'ho fatto haha
 
-        //rotate_servo_angle(0);    // Rotate to 0°
+        //rotate_servo_angle(0);    // Rotate to 0ï¿½
 
-          //rotate_servo_angle(90);   // Rotate to 90°
+          //rotate_servo_angle(90);   // Rotate to 90ï¿½
 
-          //rotate_servo_angle(180);  // Rotate to 180°
+          //rotate_servo_angle(180);  // Rotate to 180ï¿½
 
 
     }
