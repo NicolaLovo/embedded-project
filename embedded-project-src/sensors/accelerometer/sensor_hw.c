@@ -55,8 +55,9 @@ void accelerometer_hw_init(void) {
 void ADC14_IRQHandler(void)
 {
     uint64_t status;
+
     /* ADC results buffer */
-    uint16_t resultsBuffer[3];
+    static uint16_t resultsBuffer[3];
 
     status = ADC14_getEnabledInterruptStatus();
     ADC14_clearInterruptFlag(status);
