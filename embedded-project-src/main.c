@@ -89,7 +89,7 @@ void main(void)
         lux = read_light();
         light_on_read(lux);
 
-
+        //PCM_gotoLPM0();
         buzzer_on(); //Worka
 
         //buzzer_off(); //Worka in qualche maniera, ma non credo sia corretto come l'ho fatto haha

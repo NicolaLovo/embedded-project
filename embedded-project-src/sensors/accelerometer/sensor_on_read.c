@@ -18,12 +18,13 @@ void accelerometer_on_read(uint16_t resultsBuffer[3]) {
 
 
     if (over_high_thrsd || under_low_thrsd){
-        printf("--- EARTHQUAKE detected ---");
+        printf("--- EARTHQUAKE detected ---\n");
         //printf("X: %u, Y: %u, Z: %u\n", resultsBuffer[0], resultsBuffer[1], resultsBuffer[2]);
         if (door_current_state == DOOR_STATE_CLOSE) {
             door_event_earthquake_start();
             return;
         }
-        _delay_cycles(5000000);
     }
+
+
 }
