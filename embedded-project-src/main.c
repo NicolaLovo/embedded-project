@@ -18,13 +18,14 @@
 #include "sensors/light/sensor_hw.h"
 #include "sensors/light/sensor_on_read.h"
 #include "sensors/doorButton/sensor_hw.h"
+#include "sensors/irrigationButton/sensor_hw.h"
+#include "sensors/irrigationButton/sensor_on_read.h"
 #include "sensors/accelerometer/sensor_hw.h"
 #include "sensors/accelerometer/sensor_on_read.h"
 
 #include "outputs/servo/servo_hw.h"
 #include "outputs/buzzer/buzzer_hw.h"
 
-#include "outputs/blueLED/blueLED.h"
 
 void hw_init(void) {
     // Initialize the light sensor
@@ -36,11 +37,11 @@ void hw_init(void) {
     // Initialize door button
     door_button_hw_init();
 
+    // Initialize irrigation button
+    irrigation_button_hw_init();
+
     // Initialize accelerometer
     accelerometer_hw_init();
-
-    // Initialize blueLED
-    led_hw_init();
 
     servo_hw_init();
 

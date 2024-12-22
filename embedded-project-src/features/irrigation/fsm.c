@@ -4,8 +4,10 @@
 
 void fn_irrigation_init(){
     // hardware init
-    irrigation_current_state = IRRIGATION_STATE_IDLE; // serve??
+    // Initialize blueLED
+    led_hw_init();
     toggle_led(false);
+    irrigation_current_state = IRRIGATION_STATE_IDLE;
 }
 void fn_irrigation_idle(void){
     // timer not counting
