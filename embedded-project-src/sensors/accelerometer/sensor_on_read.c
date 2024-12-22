@@ -5,7 +5,6 @@
 #include "features/door/fsm.h"
 #include "features/door/events.h"
 
-
 void accelerometer_on_read(uint16_t resultsBuffer[3]) {
 
     uint16_t x = resultsBuffer[0];
@@ -27,7 +26,6 @@ void accelerometer_on_read(uint16_t resultsBuffer[3]) {
                     stabilityCounter = 0;
                     printf("\n--- EARTHQUAKE START detected ---\n");
                     //printf("X: %u, Y: %u, Z: %u\n", x, y, z);
-
                     /* Trigger door event */
                     if (door_current_state == DOOR_STATE_CLOSE) {
                         door_event_earthquake_start();
@@ -44,11 +42,10 @@ void accelerometer_on_read(uint16_t resultsBuffer[3]) {
                         state = STABILIZING;
                         stabilityCounter = 0;
                         printf("--- EARTHQUAKE END detected ---\n");
-
                         /* Trigger door event */
-                        if (door_current_state == DOOR_STATE_CLOSE) {
+                        if (door_current_state == DOOR_STATE_OPEN) {
                             door_event_earthquake_end();
-                       }
+                        }
                     }
                 }
                 break;
@@ -60,16 +57,5 @@ void accelerometer_on_read(uint16_t resultsBuffer[3]) {
                 }
                 break;
             }
-
-/*
-    if (over_high_thrsd || under_low_thrsd){
-        printf("--- EARTHQUAKE detected ---\n");
-        //printf("X: %u, Y: %u, Z: %u\n", resultsBuffer[0], resultsBuffer[1], resultsBuffer[2]);
-        if (door_current_state == DOOR_STATE_CLOSE) {
-            door_event_earthquake_start();
-            return;
-        }
-    }
-*/
 
 }
