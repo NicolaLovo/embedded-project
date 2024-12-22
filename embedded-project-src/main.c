@@ -24,6 +24,7 @@
 #include "outputs/servo/servo_hw.h"
 #include "outputs/buzzer/buzzer_hw.h"
 
+#include "outputs/blueLED/blueLED.h"
 
 void hw_init(void) {
     // Initialize the light sensor
@@ -37,6 +38,9 @@ void hw_init(void) {
 
     // Initialize accelerometer
     accelerometer_hw_init();
+
+    // Initialize blueLED
+    led_hw_init();
 
     servo_hw_init();
 

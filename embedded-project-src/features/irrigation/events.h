@@ -11,7 +11,7 @@ void irrigation_event_highTemp(void);
 void irrigation_event_lowTemp(void);
 
 // Called when the irrigation is on
-void irrigation_event_timer_count(void);
+void irrigation_event_timer_start(void);
 
 // Called when the timer reaches a specified number
 void irrigation_event_timer_done(void);

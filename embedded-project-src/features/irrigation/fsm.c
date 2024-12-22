@@ -1,18 +1,21 @@
 #include "features/irrigation/fsm.h"
+#include "outputs/blueLED/blueLED.h"
 
 
 void fn_irrigation_init(){
-    // hardware init...
-    irrigation_current_state = IRRIGATION_STATE_IDLE;
+    // hardware init
+    irrigation_current_state = IRRIGATION_STATE_IDLE; // serve??
+    toggle_led(false);
 }
 void fn_irrigation_idle(void){
     // timer not counting
+    toggle_led(false);
 }
 void fn_irrigation_on(void){
     // ...
     // turn blue led on, while timer counting
     // ...
-    // irrigation done
+    toggle_led(true);
 }
 
 extern Irrigation_State_t irrigation_current_state = IRRIGATION_STATE_INIT;
