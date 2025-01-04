@@ -1,9 +1,9 @@
 #ifndef __SENSOR_HW_H__
 #define __SENSOR_HW_H__
 
-#include "tools/HAL_I2C.h" //support I2C
-#include "tools/HAL_TMP006.h"
 
+#include "msp.h"
+#include <ti/devices/msp432p4xx/driverlib/driverlib.h>
 
 
 #define SENSOR_IRQn
