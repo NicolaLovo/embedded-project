@@ -5,8 +5,12 @@
 #include "tools/HAL_TMP006.h"
 
 
+
 #define SENSOR_IRQn
 
+uint32_t cal30;
+uint32_t cal85;
+float calDifference;
 
 //init sensor
 void climate_sensor_hw_init(void);
@@ -15,14 +19,21 @@ void climate_sensor_hw_init(void);
 int climate_sensor_hw_readTemperature(void);
 
 //ISR: INTERRUPT
-void climate_sensor_PORT4_IRQHandler(void);
+void ADC14_IRQHandler(void);
 
 /*
-//first climate sensor interrupt handling
-perchè è strano che in una casa ci siano cambi improvvisi di temperatura 
+MAIN 
+// Inizializzazione dell'hardware 
+    climate_sensor_hw_init();
 
-void climate_sensor_hw_configureInterrupt(void);
-void climate_sensor_hw_handleInterrupt(void);
+//     Mette il microcontrollore in modalità LPM0 per risparmiare energia 
+    while (1)
+    {
+        PCM_gotoLPM0();
+    }
+
 */
+
+
 
 #endif
