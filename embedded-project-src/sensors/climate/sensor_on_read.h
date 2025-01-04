@@ -1,7 +1,9 @@
 #ifndef __SENSOR_ON_READ_H__
 #define __SENSOR_ON_READ_H__
+
 #include "sensor_hw.h"
 #include "features/climate/events.h"
+#include "features/climate/fsm.h"
 
 #define LOWEST_TEMPERATURE 19
 #define HIGHEST_TEMPERATURE 25

@@ -1,6 +1,22 @@
 #include "sensor_on_read.h"
 
 
+
+
+
+/*switch (state){
+
+    case OFF:
+        if (tempC > HIGHEST_TEMPERATURE){
+            fn_aria_condizionata();
+        }
+    case ON:
+        if (tempC ...){
+
+        }
+        
+}
+*/
 void climate_sensor_on_read_handleTemperature(void){
     int temperature= climate_sensor_hw_readTemperature();
     if (temperature<LOWEST_TEMPERATURE){
@@ -14,5 +30,6 @@ void climate_sensor_on_read_handleTemperature(void){
     
 
 }
+ 
 
 
