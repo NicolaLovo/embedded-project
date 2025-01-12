@@ -7,9 +7,14 @@
 void door_event_skyDark(void);
 
 /**
- * Called when the button for door open is clicked
+ * Called when the button for door open is clicked and is day
  */
 void door_event_button_open(void);
+
+/**
+ * Called when the button for door open is clicked and is night
+ */
+void door_event_button_force_open(void);
 
 /**
  * Called when the button for door close is clicked
