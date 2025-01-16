@@ -38,6 +38,11 @@ float read_light(void) {
 }
 
 
+bool light_is_day() {
+    float lux = read_light();
+    return lux >= DAY_THRESHOLD;
+}
+
 /*
 void PORT4_IRQHandler(void)
 {
