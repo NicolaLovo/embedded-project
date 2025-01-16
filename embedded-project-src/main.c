@@ -27,6 +27,8 @@
 #include "outputs/buzzer/buzzer_hw.h"
 
 
+#include "testing/tests.h"
+
 void hw_init(void) {
     // Initialize the light sensor
     light_hw_init();
@@ -54,6 +56,7 @@ float lux;
  */
 void main(void)
 {
+    run_tests();
 
 	WDT_A->CTL = WDT_A_CTL_PW | WDT_A_CTL_HOLD;		// stop watchdog timer
 
