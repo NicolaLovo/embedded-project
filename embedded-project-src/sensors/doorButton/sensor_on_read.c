@@ -1,4 +1,5 @@
 #include "sensor_on_read.h"
+#include "sensors/light/sensor_hw.h"
 
 #include "features/door/fsm.h"
 #include "features/door/events.h"
@@ -13,11 +14,17 @@ void door_button_on_press(void) {
 
     if (door_current_state == DOOR_STATE_CLOSE) {
 
-        // if it is day, door_event_button_open()
-        // if it is night, door_event_button_force_open()
-        // define functions is_day() in sensor_on_read.c of light sensor
+        /**
+         * If it is day, just open the door,
+         * if it is night to prevent closing due to skyDark, force open door
+         */
+        bool is_day = light_is_day();
 
-        door_event_button_open();
+        if(is_day) {
+            door_event_button_open();
+        } else {
+            door_event_button_force_open();
+        }
         return;
     }
 

@@ -4,6 +4,9 @@
 #include <ti/devices/msp432p4xx/driverlib/driverlib.h>
 
 
+#define DAY_THRESHOLD 100
+
+
 /**
  * I2C is mapped to port 6.4 and 6.5
  * Light sensor interrupt is mapped to port4.6
@@ -26,6 +29,12 @@ void light_hw_init(void);
  * Manually read light sensor value
  */
 float read_light(void);
+
+
+/**
+ * returns true if it is day, false if it is night
+ */
+bool light_is_day();
 
 /**
  * Interrupt handler for door button

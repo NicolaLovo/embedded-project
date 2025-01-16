@@ -72,6 +72,7 @@ int climate_sensor_hw_readTemperature(void){
 }
 
 //sensor interrupt handling 
+/*
 void ADC14_IRQHandler(void){
     uint64_t status;
     int16_t conRes;
@@ -84,7 +85,7 @@ void ADC14_IRQHandler(void){
         conRes = ((ADC14_getResult(ADC_MEM0) - cal30) * 55);
         tempC = (conRes / calDifference) + 30.0f;
 
-        /* Turn on/off led based on the temperature*/
+        // Turn on/off led based on the temperature
         if (tempC < 19.0f)
         {
             GPIO_setOutputHighOnPin(GPIO_PORT_P2, GPIO_PIN0); // turn on red
@@ -112,6 +113,7 @@ void ADC14_IRQHandler(void){
     }
 }
 
+*/
 
 
 
