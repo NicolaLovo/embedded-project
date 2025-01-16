@@ -22,6 +22,8 @@
 #include "sensors/irrigationButton/sensor_on_read.h"
 #include "sensors/accelerometer/sensor_hw.h"
 #include "sensors/accelerometer/sensor_on_read.h"
+#include "sensors/voltmeter/sensor_hw.h"
+#include "sensors/voltmeter/sensor_on_read.h"
 
 #include "outputs/servo/servo_hw.h"
 #include "outputs/buzzer/buzzer_hw.h"
@@ -47,6 +49,7 @@ void hw_init(void) {
 
     servo_hw_init();
 
+    voltage_hw_init();
 }
 
 float lux;
@@ -97,7 +100,9 @@ void main(void)
         lux = read_light();
         light_on_read(lux);
 
-        buzzer_on(); //Worka
+        // buzzer_on(); //Worka
+
+        int value = voltage_is_high();
 
         //buzzer_off(); //Worka in qualche maniera, ma non credo sia corretto come l'ho fatto haha
 
