@@ -3,7 +3,6 @@
 
 #include <ti/devices/msp432p4xx/driverlib/driverlib.h>
 
-
 /**
  * The Voltmeter is mapped to port J4.34 on BoosterPack MKII
  * Then the port J4.34 is connected to the P2.3 on the MSP432P401R
