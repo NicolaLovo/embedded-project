@@ -12,6 +12,6 @@ int voltage_is_high() {
   // int voltageReading = read_voltage();
   // return voltageReading >= VOLTAGE_THRESHOLD;
   int pinValue = GPIO_getInputPinValue(ALLIGATOR_CLIP_PORT, ALLIGATOR_CLIP_PIN);
-  printf("Pin Value: %d\n", pinValue); // Print the pin value for debugging
+  // printf("Pin Value: %d\n", pinValue); // Print the pin value for debugging
   return pinValue == GPIO_INPUT_PIN_LOW;
 }

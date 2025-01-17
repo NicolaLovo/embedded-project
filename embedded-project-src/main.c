@@ -30,7 +30,38 @@
 
 #include "testing/tests.h"
 
+#include "tools/LcdDriver/Crystalfontz128x128_ST7735.h"
+#include "tools/LcdDriver/HAL_MSP_EXP432P401R_Crystalfontz128x128_ST7735.h"
 #include <stdio.h>
+#include <ti/devices/msp432p4xx/driverlib/driverlib.h>
+#include <ti/devices/msp432p4xx/inc/msp.h>
+#include <ti/grlib/grlib.h>
+
+Graphics_Context g_sContext;
+
+#define IS_DAY "Is Sunny"
+#define IS_NIGHT "Is Night"
+#define ALLARM_ON "Allarm  On"
+#define ALLARM_OFF "Allarm Off"
+
+void graphicsInit() {
+  /* Initializes display */
+  Crystalfontz128x128_Init();
+
+  /* Set default screen orientation */
+  Crystalfontz128x128_SetOrientation(LCD_ORIENTATION_UP);
+
+  /* Initializes graphics context */
+  Graphics_initContext(&g_sContext, &g_sCrystalfontz128x128,
+                       &g_sCrystalfontz128x128_funcs);
+  Graphics_setForegroundColor(&g_sContext, GRAPHICS_COLOR_RED);
+  Graphics_setBackgroundColor(&g_sContext, GRAPHICS_COLOR_WHITE);
+  GrContextFontSet(&g_sContext, &g_sFontFixed6x8);
+  Graphics_clearDisplay(&g_sContext);
+  Graphics_drawStringCentered(&g_sContext,
+                              (int8_t *)"Embedded Project:", AUTO_STRING_LENGTH,
+                              64, 30, OPAQUE_TEXT);
+}
 
 void hw_init(void) {
   // Initialize the light sensor
@@ -51,6 +82,8 @@ void hw_init(void) {
   servo_hw_init();
 
   voltage_hw_init();
+
+  graphicsInit();
 }
 
 float lux;
@@ -79,6 +112,10 @@ void main(void) {
   //     __delay_cycles(3000000); // 3-second delay
   // }
 
+  float lux;
+  int contact;
+  int isDay;
+
   while (1) {
     if (door_current_state < DOOR_NUM_STATES) {
       (*door_fsm[door_current_state].state_function)();
@@ -97,24 +134,35 @@ void main(void) {
      * Polling: not the best solution but for now we do not know how to use
      * interrupts
      */
-    float lux = read_light();
-    printf("Lux: %f\n", lux);
+    lux = read_light();
     light_on_read(lux);
 
     // buzzer_on(); //Worka
 
-    int contact = voltage_is_high();
-    int isDay = light_is_day();
+    contact = voltage_is_high();
+    isDay = light_is_day();
 
     if (isDay == 1) {
       buzzer_off();
+      Graphics_drawStringCentered(&g_sContext, (int8_t *)IS_DAY,
+                                  AUTO_STRING_LENGTH, 64, 50, OPAQUE_TEXT);
     } else {
+      Graphics_drawStringCentered(&g_sContext, (int8_t *)IS_NIGHT,
+                                  AUTO_STRING_LENGTH, 64, 50, OPAQUE_TEXT);
       if (contact == 1) {
         buzzer_on();
+        Graphics_drawStringCentered(&g_sContext, (int8_t *)ALLARM_ON,
+                                    AUTO_STRING_LENGTH, 64, 60, OPAQUE_TEXT);
       } else {
         buzzer_off();
+        Graphics_drawStringCentered(&g_sContext, (int8_t *)ALLARM_OFF,
+                                    AUTO_STRING_LENGTH, 64, 60, OPAQUE_TEXT);
       }
     }
+
+    // Graphics_clearDisplay(&g_sContext);
+    Graphics_drawStringCentered(&g_sContext, (int8_t *)"Embedded Project:",
+                                AUTO_STRING_LENGTH, 64, 30, OPAQUE_TEXT);
 
     // buzzer_off(); //Worka in qualche maniera, ma non credo sia corretto come
     // l'ho fatto haha
