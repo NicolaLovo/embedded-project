@@ -93,7 +93,7 @@ void hw_init(void) {
 
   blue_led_hw_init();
 
-  // red_led_hw_init();
+  red_led_hw_init();
 }
 
 float lux;
@@ -101,7 +101,7 @@ float lux;
 /**
  * main.c
  */
-void main(void) {
+ void main(void) {
 #ifdef TESTING
 
   run_tests();

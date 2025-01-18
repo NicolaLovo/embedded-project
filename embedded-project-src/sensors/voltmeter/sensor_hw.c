@@ -8,10 +8,7 @@ void voltage_hw_init(void) {
 }
 
 int voltage_is_high() {
-  // Read voltage sensor value
-  // int voltageReading = read_voltage();
-  // return voltageReading >= VOLTAGE_THRESHOLD;
-  int pinValue = GPIO_getInputPinValue(ALLIGATOR_CLIP_PORT, ALLIGATOR_CLIP_PIN);
-  // printf("Pin Value: %d\n", pinValue); // Print the pin value for debugging
-  return pinValue == GPIO_INPUT_PIN_LOW;
+
+  return GPIO_getInputPinValue(ALLIGATOR_CLIP_PORT, ALLIGATOR_CLIP_PIN) ==
+         GPIO_INPUT_PIN_LOW;
 }

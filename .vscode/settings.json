@@ -2,6 +2,7 @@
   "files.associations": {
     "fsm.h": "c",
     "events.h": "c",
-    "redled.h": "c"
+    "redled.h": "c",
+    "driverlib.h": "c"
   }
 }
