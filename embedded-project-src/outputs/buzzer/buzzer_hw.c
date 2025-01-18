@@ -7,7 +7,7 @@ Timer_A_CompareModeConfig compareConfig_PWM = {
     TIMER_A_CAPTURECOMPARE_REGISTER_4,        // Use CCR3
     TIMER_A_CAPTURECOMPARE_INTERRUPT_DISABLE, // Disable CCR interrupt
     TIMER_A_OUTPUTMODE_TOGGLE_SET,            // Toggle output but
-    10000                                     // 25% Duty Cycle initially
+    35000                                     // 25% Duty Cycle initially
 };
 
 Timer_A_CompareModeConfig compareConfig_PWM2 = {
