@@ -1,6 +1,7 @@
 {
-    "files.associations": {
-        "fsm.h": "c",
-        "events.h": "c"
-    }
+  "files.associations": {
+    "fsm.h": "c",
+    "events.h": "c",
+    "redled.h": "c"
+  }
 }
