@@ -2,7 +2,7 @@
 
 // define macros and tools useful for testing
 
-#ifdef TESTING
+#ifndef TESTING
     #define assert(bool_expression) ((void)0) /* Define it as a no-op */
 #else
 #define assert(bool_expression) \
