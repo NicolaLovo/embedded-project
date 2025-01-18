@@ -4,7 +4,7 @@
 #include <ti/devices/msp432p4xx/driverlib/driverlib.h>
 
 
-#define DAY_THRESHOLD 100
+#define DAY_THRESHOLD 50
 
 
 /**
