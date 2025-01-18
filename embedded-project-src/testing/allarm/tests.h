@@ -2,7 +2,7 @@
 
 #ifdef TESTING
 
-void test_door_feature(void);
+void test_allarm_feature(void);
 
 #else
 
