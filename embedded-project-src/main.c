@@ -123,6 +123,7 @@ void main(void) {
   int isDay;
 
   while (1) {
+
     if (door_current_state < DOOR_NUM_STATES) {
       (*door_fsm[door_current_state].state_function)();
     }

@@ -24,12 +24,11 @@ void accelerometer_on_read(uint16_t resultsBuffer[3]) {
                 if (significantMovement) {
                     state = ACTIVE;
                     stabilityCounter = 0;
-                    printf("\n--- EARTHQUAKE START detected ---\n");
+                    //printf("\n--- EARTHQUAKE START detected ---\n");
                     //printf("X: %u, Y: %u, Z: %u\n", x, y, z);
                     /* Trigger door event */
-                    if (door_current_state == DOOR_STATE_CLOSE) {
-                        door_event_earthquake_start();
-                    }
+                    door_event_earthquake_start();
+
                 }
                 break;
 
@@ -41,11 +40,10 @@ void accelerometer_on_read(uint16_t resultsBuffer[3]) {
                     if (stabilityCounter >= STABILITY_COUNT) {
                         state = STABILIZING;
                         stabilityCounter = 0;
-                        printf("--- EARTHQUAKE END detected ---\n");
+                        //printf("--- EARTHQUAKE END detected ---\n");
                         /* Trigger door event */
-                        if (door_current_state == DOOR_STATE_OPEN) {
-                            door_event_earthquake_end();
-                        }
+                        door_event_earthquake_end();
+
                     }
                 }
                 break;
