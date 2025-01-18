@@ -33,7 +33,7 @@ void buzzer_hw_init(void) {
    * The port J4.40 on BoosterPack MKII is connected to the P2.7 on the
    * MSP432P401R
    */
-  GPIO_setAsPeripheralModuleFunctionOutputPin(GPIO_PORT_P2, GPIO_PIN7,
+  GPIO_setAsPeripheralModuleFunctionOutputPin(BUZZER_PORT, BUZZER_PIN,
                                               GPIO_PRIMARY_MODULE_FUNCTION);
 
   /* Configuring Timer_A0 for Up Mode and starting */
