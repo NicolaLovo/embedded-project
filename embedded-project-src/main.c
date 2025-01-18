@@ -1,4 +1,5 @@
 #include "msp.h"
+#include "config.h"
 
 #include "features/door/events.h"
 #include "features/door/fsm.h"
@@ -92,7 +93,12 @@ float lux;
  * main.c
  */
 void main(void) {
+#ifdef TESTING
+
   run_tests();
+
+#endif
+
 
   WDT_A->CTL = WDT_A_CTL_PW | WDT_A_CTL_HOLD; // stop watchdog timer
 

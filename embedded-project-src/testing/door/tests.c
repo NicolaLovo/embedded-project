@@ -64,6 +64,8 @@ void test_door_feature() {
     assert(door_current_state == DOOR_STATE_OPEN);
     run_door_fsm();
 
+    printf("Door tests done successully\n");
+
 
 }
 
