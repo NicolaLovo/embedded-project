@@ -3,16 +3,15 @@
 #include "sensor_hw.h"
 
 void voltage_on_read(int voltage, bool is_day) {
-   if(is_day) {
-       allarm_event_onContactEnd();
-       return;
-   }
+  if (is_day) {
+    allarm_event_skyLight();
+  } else {
+    allarm_event_skyDark();
+  }
 
-  if (voltage_is_high()) {
-    // high voltage
+  if (voltage_is_high() && !is_day) {
     allarm_event_onContact();
   } else {
-    // low voltage
     allarm_event_onContactEnd();
   }
 }

@@ -3,8 +3,8 @@
 #include <ti/devices/msp432p4xx/inc/msp.h>
 #include <ti/grlib/grlib.h>
 
-#include "msp.h"
 #include "config.h"
+#include "msp.h"
 
 #include "features/door/events.h"
 #include "features/door/fsm.h"
@@ -31,10 +31,10 @@
 #include "sensors/voltmeter/sensor_hw.h"
 #include "sensors/voltmeter/sensor_on_read.h"
 
-#include "outputs/buzzer/buzzer_hw.h"
-#include "outputs/servo/servo_hw.h"
 #include "outputs/blueLED/blueLED.h"
+#include "outputs/buzzer/buzzer_hw.h"
 #include "outputs/redLED/redLED.h"
+#include "outputs/servo/servo_hw.h"
 
 #include "testing/tests.h"
 
@@ -66,7 +66,7 @@ void graphicsInit() {
   Graphics_clearDisplay(&g_sContext);
   Graphics_drawStringCentered(&g_sContext,
                               (int8_t *)"Embedded Project:", AUTO_STRING_LENGTH,
-                              64, 30, OPAQUE_TEXT);
+                              64, 20, OPAQUE_TEXT);
 }
 
 void hw_init(void) {
@@ -92,8 +92,8 @@ void hw_init(void) {
   graphicsInit();
 
   blue_led_hw_init();
- // red_led_hw_init();
 
+  // red_led_hw_init();
 }
 
 float lux;
@@ -107,7 +107,6 @@ void main(void) {
   run_tests();
 
 #endif
-
 
   WDT_A->CTL = WDT_A_CTL_PW | WDT_A_CTL_HOLD; // stop watchdog timer
 
@@ -161,33 +160,34 @@ void main(void) {
     voltage_on_read(contact, isDay);
     isEarthquake = earthquake_active();
 
-
     if (isDay == 1) {
       Graphics_drawStringCentered(&g_sContext, (int8_t *)IS_DAY,
+                                  AUTO_STRING_LENGTH, 64, 40, OPAQUE_TEXT);
+      Graphics_drawStringCentered(&g_sContext, (int8_t *)"              ",
                                   AUTO_STRING_LENGTH, 64, 50, OPAQUE_TEXT);
     } else {
       Graphics_drawStringCentered(&g_sContext, (int8_t *)IS_NIGHT,
-                                  AUTO_STRING_LENGTH, 64, 50, OPAQUE_TEXT);
+                                  AUTO_STRING_LENGTH, 64, 40, OPAQUE_TEXT);
       if (contact == 1) {
         Graphics_drawStringCentered(&g_sContext, (int8_t *)ALLARM_ON,
-                                    AUTO_STRING_LENGTH, 64, 60, OPAQUE_TEXT);
+                                    AUTO_STRING_LENGTH, 64, 50, OPAQUE_TEXT);
       } else {
         Graphics_drawStringCentered(&g_sContext, (int8_t *)ALLARM_OFF,
-                                    AUTO_STRING_LENGTH, 64, 60, OPAQUE_TEXT);
+                                    AUTO_STRING_LENGTH, 64, 50, OPAQUE_TEXT);
       }
     }
 
-    if(isEarthquake){
-       Graphics_drawStringCentered(&g_sContext, (int8_t *)EARTHQUAKE,
-                                  AUTO_STRING_LENGTH, 64, 80, OPAQUE_TEXT);
+    if (isEarthquake) {
+      Graphics_drawStringCentered(&g_sContext, (int8_t *)EARTHQUAKE,
+                                  AUTO_STRING_LENGTH, 64, 70, OPAQUE_TEXT);
     } else {
-       Graphics_drawStringCentered(&g_sContext, (int8_t *)NO_EARTHQUAKE,
-                                  AUTO_STRING_LENGTH, 64, 80, OPAQUE_TEXT);
+      Graphics_drawStringCentered(&g_sContext, (int8_t *)NO_EARTHQUAKE,
+                                  AUTO_STRING_LENGTH, 64, 70, OPAQUE_TEXT);
     }
 
     // Graphics_clearDisplay(&g_sContext);
     Graphics_drawStringCentered(&g_sContext, (int8_t *)"Embedded Project:",
-                                AUTO_STRING_LENGTH, 64, 30, OPAQUE_TEXT);
+                                AUTO_STRING_LENGTH, 64, 20, OPAQUE_TEXT);
 
     // buzzer_off(); //Worka in qualche maniera, ma non credo sia corretto come
     // l'ho fatto haha
