@@ -1,11 +1,14 @@
 #include "features/allarm/fsm.h"
+#include "outputs/redLED/redLED.h"
 
 void fn_allarm_init() {
     // hardware init...
     allarm_current_state = ALLARM_STATE_IDLE;
+    red_toggle_led(true);
 }
 
 void fn_allarm_idle() {
+    red_toggle_led(true);
 
 }
 
@@ -14,7 +17,7 @@ void fn_allarm_system_active() {
 }
 
 void fn_allarm_buzzer_active() {
-
+    red_toggle_led(true);
 }
 
 

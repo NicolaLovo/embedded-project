@@ -1,3 +1,8 @@
+#include <stdio.h>
+#include <ti/devices/msp432p4xx/driverlib/driverlib.h>
+#include <ti/devices/msp432p4xx/inc/msp.h>
+#include <ti/grlib/grlib.h>
+
 #include "msp.h"
 #include "config.h"
 
@@ -28,15 +33,13 @@
 
 #include "outputs/buzzer/buzzer_hw.h"
 #include "outputs/servo/servo_hw.h"
+#include "outputs/blueLED/blueLED.h"
+#include "outputs/redLED/redLED.h"
 
 #include "testing/tests.h"
 
 #include "tools/LcdDriver/Crystalfontz128x128_ST7735.h"
 #include "tools/LcdDriver/HAL_MSP_EXP432P401R_Crystalfontz128x128_ST7735.h"
-#include <stdio.h>
-#include <ti/devices/msp432p4xx/driverlib/driverlib.h>
-#include <ti/devices/msp432p4xx/inc/msp.h>
-#include <ti/grlib/grlib.h>
 
 Graphics_Context g_sContext;
 
@@ -85,6 +88,10 @@ void hw_init(void) {
   voltage_hw_init();
 
   graphicsInit();
+
+  blue_led_hw_init();
+  red_led_hw_init();
+
 }
 
 float lux;
@@ -148,20 +155,20 @@ void main(void) {
 
     contact = voltage_is_high();
     isDay = light_is_day();
+    voltage_on_read(contact, isDay);
+
+
 
     if (isDay == 1) {
-      buzzer_off();
       Graphics_drawStringCentered(&g_sContext, (int8_t *)IS_DAY,
                                   AUTO_STRING_LENGTH, 64, 50, OPAQUE_TEXT);
     } else {
       Graphics_drawStringCentered(&g_sContext, (int8_t *)IS_NIGHT,
                                   AUTO_STRING_LENGTH, 64, 50, OPAQUE_TEXT);
       if (contact == 1) {
-        buzzer_on();
         Graphics_drawStringCentered(&g_sContext, (int8_t *)ALLARM_ON,
                                     AUTO_STRING_LENGTH, 64, 60, OPAQUE_TEXT);
       } else {
-        buzzer_off();
         Graphics_drawStringCentered(&g_sContext, (int8_t *)ALLARM_OFF,
                                     AUTO_STRING_LENGTH, 64, 60, OPAQUE_TEXT);
       }

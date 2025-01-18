@@ -1,15 +1,15 @@
-#include <outputs/blueLED/blueLED.h>
+#include "outputs/blueLED/blueLED.h"
 
-void led_hw_init(void) {
+void blue_led_hw_init(void) {
     // Set GPIO_PORT to output direction
-    GPIO_setAsOutputPin(LED_PORT,LED_PIN);
+    GPIO_setAsOutputPin(BLUE_LED_PORT,BLUE_LED_PIN);
 }
-void toggle_led(bool active){
+void blue_toggle_led(bool active){
         if (active){
-            GPIO_setOutputHighOnPin(LED_PORT, LED_PIN); // Turn on LED
+            GPIO_setOutputHighOnPin(BLUE_LED_PORT, BLUE_LED_PIN); // Turn on LED
         }
         else {
-            GPIO_setOutputLowOnPin(LED_PORT, LED_PIN); // Turn off LED
+            GPIO_setOutputLowOnPin(BLUE_LED_PORT, BLUE_LED_PIN); // Turn off LED
         }
 
 }
