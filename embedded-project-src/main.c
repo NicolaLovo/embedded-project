@@ -6,6 +6,8 @@
 #include "config.h"
 #include "msp.h"
 
+#include "lcdDisplay/lcdInit.h"
+
 #include "features/door/events.h"
 #include "features/door/fsm.h"
 
@@ -38,11 +40,6 @@
 
 #include "testing/tests.h"
 
-#include "tools/LcdDriver/Crystalfontz128x128_ST7735.h"
-#include "tools/LcdDriver/HAL_MSP_EXP432P401R_Crystalfontz128x128_ST7735.h"
-
-Graphics_Context g_sContext;
-
 #define IS_DAY "Is Sunny"
 #define IS_NIGHT "Is Night"
 #define ALLARM_ON "Allarm  On"
@@ -50,81 +47,42 @@ Graphics_Context g_sContext;
 #define NO_EARTHQUAKE "                   "
 #define EARTHQUAKE "!!! EARTHQUAKE !!!"
 
-void graphicsInit() {
-  /* Initializes display */
-  Crystalfontz128x128_Init();
 
-  /* Set default screen orientation */
-  Crystalfontz128x128_SetOrientation(LCD_ORIENTATION_UP);
-
-  /* Initializes graphics context */
-  Graphics_initContext(&g_sContext, &g_sCrystalfontz128x128,
-                       &g_sCrystalfontz128x128_funcs);
-  Graphics_setForegroundColor(&g_sContext, GRAPHICS_COLOR_RED);
-  Graphics_setBackgroundColor(&g_sContext, GRAPHICS_COLOR_WHITE);
-  GrContextFontSet(&g_sContext, &g_sFontFixed6x8);
-  Graphics_clearDisplay(&g_sContext);
-  Graphics_drawStringCentered(&g_sContext,
-                              (int8_t *)"Embedded Project:", AUTO_STRING_LENGTH,
-                              64, 20, OPAQUE_TEXT);
-}
-
+/**
+ * Initialize all the hardware components
+ */
 void hw_init(void) {
-  // Initialize the light sensor
   light_hw_init();
 
-  // Initialize the buzzer
   buzzer_hw_init();
 
-  // Initialize door button
   door_button_hw_init();
 
-  // Initialize irrigation button
   irrigation_button_hw_init();
 
-  // Initialize accelerometer
   accelerometer_hw_init();
 
   servo_hw_init();
 
   voltage_hw_init();
 
-  graphicsInit();
+  lcd_hw_init();
 
   blue_led_hw_init();
 
   red_led_hw_init();
 }
 
-float lux;
-
-/**
- * main.c
- */
- void main(void) {
+void main(void) {
 #ifdef TESTING
 
   run_tests();
 
 #endif
-
-  WDT_A->CTL = WDT_A_CTL_PW | WDT_A_CTL_HOLD; // stop watchdog timer
+  // stop watchdog timer
+  WDT_A->CTL = WDT_A_CTL_PW | WDT_A_CTL_HOLD;
 
   hw_init();
-
-  //  while (1) {
-  //     // Move to 0� position
-  //     rotate_servo_angle(0);
-  //     __delay_cycles(3000000); // 3-second delay
-
-  //     // Move to 90� position
-  //     rotate_servo_angle(90);
-  //     __delay_cycles(3000000); // 3-second delay
-
-  //     // Move to 180� position
-  //     rotate_servo_angle(180);
-  //     __delay_cycles(3000000); // 3-second delay
-  // }
 
   float lux;
   int contact;
@@ -152,8 +110,6 @@ float lux;
      */
     lux = read_light();
     light_on_read(lux);
-
-    // buzzer_on(); //Worka
 
     contact = voltage_is_high();
     isDay = light_is_day();
@@ -188,14 +144,5 @@ float lux;
     // Graphics_clearDisplay(&g_sContext);
     Graphics_drawStringCentered(&g_sContext, (int8_t *)"Embedded Project:",
                                 AUTO_STRING_LENGTH, 64, 20, OPAQUE_TEXT);
-
-    // buzzer_off(); //Worka in qualche maniera, ma non credo sia corretto come
-    // l'ho fatto haha
-
-    // rotate_servo_angle(0);    // Rotate to 0�
-
-    // rotate_servo_angle(90);   // Rotate to 90�
-
-    // rotate_servo_angle(180);  // Rotate to 180�
   }
 }
