@@ -47,6 +47,8 @@ Graphics_Context g_sContext;
 #define IS_NIGHT "Is Night"
 #define ALLARM_ON "Allarm  On"
 #define ALLARM_OFF "Allarm Off"
+#define NO_EARTHQUAKE "                   "
+#define EARTHQUAKE "!!! EARTHQUAKE !!!"
 
 void graphicsInit() {
   /* Initializes display */
@@ -90,7 +92,7 @@ void hw_init(void) {
   graphicsInit();
 
   blue_led_hw_init();
-  red_led_hw_init();
+ // red_led_hw_init();
 
 }
 
@@ -128,6 +130,7 @@ void main(void) {
   float lux;
   int contact;
   int isDay;
+  int isEarthquake;
 
   while (1) {
 
@@ -156,7 +159,7 @@ void main(void) {
     contact = voltage_is_high();
     isDay = light_is_day();
     voltage_on_read(contact, isDay);
-
+    isEarthquake = earthquake_active();
 
 
     if (isDay == 1) {
@@ -172,6 +175,14 @@ void main(void) {
         Graphics_drawStringCentered(&g_sContext, (int8_t *)ALLARM_OFF,
                                     AUTO_STRING_LENGTH, 64, 60, OPAQUE_TEXT);
       }
+    }
+
+    if(isEarthquake){
+       Graphics_drawStringCentered(&g_sContext, (int8_t *)EARTHQUAKE,
+                                  AUTO_STRING_LENGTH, 64, 80, OPAQUE_TEXT);
+    } else {
+       Graphics_drawStringCentered(&g_sContext, (int8_t *)NO_EARTHQUAKE,
+                                  AUTO_STRING_LENGTH, 64, 80, OPAQUE_TEXT);
     }
 
     // Graphics_clearDisplay(&g_sContext);

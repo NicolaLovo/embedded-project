@@ -14,11 +14,12 @@ typedef enum {
     ACTIVE,     // Earthquake
     STABILIZING // Waiting for stabilization
 } EarthquakeState;
-
+volatile extern EarthquakeState state;
 /**
  * Hw-independent function to be called by the accelerometer isr
  * Calls accordingly the events to mutate the fsm of the features
  */
 void accelerometer_on_read(uint16_t resultsBuffer[3]);
+bool earthquake_active(void);
 
 #endif
