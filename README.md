@@ -1,9 +1,16 @@
 # Embedded project
 
 - [Embedded project](#embedded-project)
+  - [Used pins for breadboard](#used-pins-for-breadboard)
   - [Getting started](#getting-started)
     - [Building the project](#building-the-project)
   - [Project documentation](#project-documentation)
+
+## Used pins for breadboard
+
+- Red Led: J1.5 maps to Port 4.1
+- Blu led: J1.6 maps to Port 4.3
+- Additional Buzzer: J4.40 maps to Port 2.7
 
 ## Getting started
 
