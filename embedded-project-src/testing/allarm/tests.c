@@ -33,14 +33,16 @@ void test_allarm_feature() {
   assert(allarm_current_state == ALLARM_STATE_ACTIVE);
   run_allarm_fsm();
 
+  // Simulate contact event, state should change to ALLARM_STATE_BUZZER_ACTIVE
+  allarm_event_onContact();
+  assert(allarm_current_state == ALLARM_STATE_BUZZER_ACTIVE);
+  run_allarm_fsm();
+
   // Simulate sky light event, state should change back to ALLARM_STATE_IDLE
   allarm_event_skyLight();
   assert(allarm_current_state == ALLARM_STATE_IDLE);
   run_allarm_fsm();
 
-  /*
-    ! Error: should be in ALLARM_STATE_BUZZER_ACTIVE
-  */
   // Simulate contact event, state should change to ALLARM_STATE_BUZZER_ACTIVE
   allarm_event_onContact();
   assert(allarm_current_state == ALLARM_STATE_IDLE);

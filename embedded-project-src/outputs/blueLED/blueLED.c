@@ -3,6 +3,7 @@
 void blue_led_hw_init(void) {
   // Set GPIO_PORT to output direction
   GPIO_setAsOutputPin(BLUE_LED_PORT, BLUE_LED_PIN);
+  blue_toggle_led(false);
 }
 void blue_toggle_led(bool active) {
   if (active) {
