@@ -3,6 +3,7 @@
     "fsm.h": "c",
     "events.h": "c",
     "redled.h": "c",
-    "driverlib.h": "c"
+    "driverlib.h": "c",
+    "tools.h": "c"
   }
 }
