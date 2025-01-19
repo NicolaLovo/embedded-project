@@ -38,6 +38,11 @@ void test_allarm_feature() {
   assert(allarm_current_state == ALLARM_STATE_BUZZER_ACTIVE);
   run_allarm_fsm();
 
+  // Simulate contact end event, state should remain ALLARM_STATE_IDLE
+  allarm_event_onContactEnd();
+  assert(allarm_current_state == ALLARM_STATE_IDLE);
+  run_allarm_fsm();
+
   // Simulate sky light event, state should change back to ALLARM_STATE_IDLE
   allarm_event_skyLight();
   assert(allarm_current_state == ALLARM_STATE_IDLE);
