@@ -18,7 +18,6 @@ void irrigation_button_hw_init(void) {
 
 void PORT5_IRQHandler(void)
 {
-
     uint32_t status = GPIO_getInterruptStatus(IRRIGATION_BUTTON_PORT, IRRIGATION_BUTTON_PIN);
 
     if (status & IRRIGATION_BUTTON_PIN)
