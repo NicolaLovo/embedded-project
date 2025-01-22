@@ -1,37 +1,37 @@
-#include "features/allarm/fsm.h"
+#include "features/alarm/fsm.h"
 #include "outputs/buzzer/buzzer_hw.h"
 #include "outputs/redLED/redLED.h"
 
-void fn_allarm_init() {
+void fn_alarm_init() {
   // hardware init...
-  // printf("fn_allarm_init: Allarm is initialized\n");
-  allarm_current_state = ALLARM_STATE_IDLE;
+  // printf("fn_alarm_init: Alarm is initialized\n");
+  alarm_current_state = ALARM_STATE_IDLE;
   // red_toggle_led(true);
   red_toggle_led(false);
 }
 
-void fn_allarm_idle() {
-  // printf("fn_allarm_idle: Allarm is idle\n");
+void fn_alarm_idle() {
+  // printf("fn_alarm_idle: Alarm is idle\n");
   buzzer_off();
   red_toggle_led(false);
 }
 
-void fn_allarm_system_active() {
-  // printf("fn_allarm_system_active: Allarm is active\n");
+void fn_alarm_system_active() {
+  // printf("fn_alarm_system_active: Alarm is active\n");
   buzzer_off();
   red_toggle_led(false);
 }
 
-void fn_allarm_buzzer_active() {
+void fn_alarm_buzzer_active() {
   red_toggle_led(true);
-  // printf("fn_allarm_buzzer_active: Buzzer is active\n");
+  // printf("fn_alarm_buzzer_active: Buzzer is active\n");
   buzzer_on();
 }
 
-extern Allarm_state_t allarm_current_state = ALLARM_STATE_INIT;
+extern Alarm_state_t alarm_current_state = ALARM_STATE_INIT;
 
-Allarm_stateMachine_t allarm_fsm[] = {
-    {ALLARM_STATE_INIT, fn_allarm_init},
-    {ALLARM_STATE_IDLE, fn_allarm_idle},
-    {ALLARM_STATE_ACTIVE, fn_allarm_system_active},
-    {ALLARM_STATE_BUZZER_ACTIVE, fn_allarm_buzzer_active}};
+Alarm_stateMachine_t alarm_fsm[] = {
+    {ALARM_STATE_INIT, fn_alarm_init},
+    {ALARM_STATE_IDLE, fn_alarm_idle},
+    {ALARM_STATE_ACTIVE, fn_alarm_system_active},
+    {ALARM_STATE_BUZZER_ACTIVE, fn_alarm_buzzer_active}};

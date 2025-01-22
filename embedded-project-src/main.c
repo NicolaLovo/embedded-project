@@ -17,8 +17,8 @@
 #include "features/climate/events.h"
 #include "features/climate/fsm.h"
 
-#include "features/allarm/events.h"
-#include "features/allarm/fsm.h"
+#include "features/alarm/events.h"
+#include "features/alarm/fsm.h"
 
 #include "features/frontDoorLight/events.h"
 #include "features/frontDoorLight/fsm.h"
@@ -42,8 +42,8 @@
 
 #define IS_DAY "Is Sunny"
 #define IS_NIGHT "Is Night"
-#define ALLARM_ON "Allarm  On"
-#define ALLARM_OFF "Allarm Off"
+#define ALARM_ON "Alarm  On"
+#define ALARM_OFF "Alarm Off"
 #define NO_EARTHQUAKE "                   "
 #define EARTHQUAKE "!!! EARTHQUAKE !!!"
 
@@ -97,8 +97,8 @@ void main(void) {
     if (irrigation_current_state < IRRIGATION_NUM_STATES) {
       (*irrigation_fsm[irrigation_current_state].state_function)();
     }
-    if (allarm_current_state < ALLARM_NUM_STATES) {
-      (*allarm_fsm[allarm_current_state].state_function)();
+    if (aLlarm_current_state < ALLARM_NUM_STATES) {
+      (*aLlarm_fsm[aLlarm_current_state].state_function)();
     }
     if (front_door_current_state < FRONT_DOOR_LIGHT_NUM_STATES) {
       (*front_door_fsm[front_door_current_state].state_function)();
@@ -125,10 +125,10 @@ void main(void) {
       Graphics_drawStringCentered(&g_sContext, (int8_t *)IS_NIGHT,
                                   AUTO_STRING_LENGTH, 64, 40, OPAQUE_TEXT);
       if (contact == 1) {
-        Graphics_drawStringCentered(&g_sContext, (int8_t *)ALLARM_ON,
+        Graphics_drawStringCentered(&g_sContext, (int8_t *)ALARM_ON,
                                     AUTO_STRING_LENGTH, 64, 50, OPAQUE_TEXT);
       } else {
-        Graphics_drawStringCentered(&g_sContext, (int8_t *)ALLARM_OFF,
+        Graphics_drawStringCentered(&g_sContext, (int8_t *)ALARM_OFF,
                                     AUTO_STRING_LENGTH, 64, 50, OPAQUE_TEXT);
       }
     }
