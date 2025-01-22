@@ -1,6 +1,6 @@
 #include "config.h"
-#include "features/allarm/events.h"
-#include "features/allarm/fsm.h"
+#include "features/alarm/events.h"
+#include "features/alarm/fsm.h"
 #include <assert.h>
 #include <stdio.h>
 

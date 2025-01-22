@@ -97,8 +97,8 @@ void main(void) {
     if (irrigation_current_state < IRRIGATION_NUM_STATES) {
       (*irrigation_fsm[irrigation_current_state].state_function)();
     }
-    if (aLlarm_current_state < ALLARM_NUM_STATES) {
-      (*aLlarm_fsm[aLlarm_current_state].state_function)();
+    if (alarm_current_state < ALARM_NUM_STATES) {
+      (*alarm_fsm[alarm_current_state].state_function)();
     }
     if (front_door_current_state < FRONT_DOOR_LIGHT_NUM_STATES) {
       (*front_door_fsm[front_door_current_state].state_function)();
