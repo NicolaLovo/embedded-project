@@ -6,14 +6,14 @@
 
 #ifdef TESTING
 
-// Function to run the current state function of the allarm FSM
+// Function to run the current state function of the alarm FSM
 void run_allarm_fsm() {
   if (allarm_current_state < ALLARM_NUM_STATES) {
     (*allarm_fsm[allarm_current_state].state_function)();
   }
 }
 
-// Function to test the allarm feature
+// Function to test the alarm feature
 void test_allarm_feature() {
   // Initial state should be ALLARM_STATE_INIT
   assert(allarm_current_state == ALLARM_STATE_INIT);
