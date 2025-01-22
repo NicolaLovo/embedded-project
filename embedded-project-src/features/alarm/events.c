@@ -1,36 +1,36 @@
-#include "features/allarm/events.h"
-#include "features/allarm/fsm.h"
+#include "features/alarm/events.h"
+#include "features/alarm/fsm.h"
 #include "outputs/buzzer/buzzer_hw.h"
 #include "outputs/redLED/redLED.h"
 
-void allarm_event_onContact(void) {
+void alarm_event_onContact(void) {
 
-  if (allarm_current_state == ALLARM_STATE_ACTIVE) {
-    allarm_current_state = ALLARM_STATE_BUZZER_ACTIVE;
+  if (alarm_current_state == ALARM_STATE_ACTIVE) {
+    alarm_current_state = ALARM_STATE_BUZZER_ACTIVE;
   }
-  // printf("\nallarm_current_state: allarm_event_onContact");
+  // printf("\nalarm_current_state: alarm_event_onContact");
 }
 
-void allarm_event_onContactEnd(void) {
+void alarm_event_onContactEnd(void) {
 
-  if (allarm_current_state == ALLARM_STATE_BUZZER_ACTIVE) {
-    allarm_current_state = ALLARM_STATE_IDLE;
-    // printf("\nallarm_current_state: allarm_event_onContactEnd");
-  }
-}
-
-void allarm_event_skyDark(void) {
-
-  if (allarm_current_state == ALLARM_STATE_IDLE) {
-    allarm_current_state = ALLARM_STATE_ACTIVE;
-    // printf("\nallarm_current_state:  allarm_event_skyDark");
+  if (alarm_current_state == ALARM_STATE_BUZZER_ACTIVE) {
+    alarm_current_state = ALARM_STATE_IDLE;
+    // printf("\nalarm_current_state: alarm_event_onContactEnd");
   }
 }
 
-void allarm_event_skyLight(void) {
+void alarm_event_skyDark(void) {
 
-  if (allarm_current_state == ALLARM_STATE_ACTIVE) {
-    allarm_current_state = ALLARM_STATE_IDLE;
-    // printf("\nallarm_current_state:   allarm_event_skyLight");
+  if (alarm_current_state == ALARM_STATE_IDLE) {
+    alarm_current_state = ALARM_STATE_ACTIVE;
+    // printf("\nalarm_current_state:  alarm_event_skyDark");
+  }
+}
+
+void alarm_event_skyLight(void) {
+
+  if (alarm_current_state == ALARM_STATE_ACTIVE) {
+    alarm_current_state = ALARM_STATE_IDLE;
+    // printf("\nalarm_current_state:   alarm_event_skyLight");
   }
 }
