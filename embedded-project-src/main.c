@@ -32,6 +32,8 @@
 #include "sensors/light/sensor_on_read.h"
 #include "sensors/voltmeter/sensor_hw.h"
 #include "sensors/voltmeter/sensor_on_read.h"
+#include "sensors/climate/sensor_hw.h"
+#include "sensors/climate/sensor_on_read.h"
 
 #include "outputs/blueLED/blueLED.h"
 #include "outputs/buzzer/buzzer_hw.h"
@@ -46,10 +48,12 @@
 #define ALARM_OFF "Alarm Off"
 #define NO_EARTHQUAKE "                   "
 #define EARTHQUAKE "!!! EARTHQUAKE !!!"
+#define IS_WARM "Air conditioning on"
+#define IS_COLD "Radiator on"
 
 
 /**
- * Initialize all the hardware components
+ * Initialize all the hardware components (output)
  */
 void hw_init(void) {
   light_hw_init();
@@ -71,6 +75,7 @@ void hw_init(void) {
   blue_led_hw_init();
 
   red_led_hw_init();
+
 }
 
 void main(void) {
@@ -89,6 +94,9 @@ void main(void) {
   int isDay;
   int isEarthquake;
 
+  int iswarm;
+  int iscold;
+
   while (1) {
 
     if (door_current_state < DOOR_NUM_STATES) {
@@ -102,6 +110,9 @@ void main(void) {
     }
     if (front_door_current_state < FRONT_DOOR_LIGHT_NUM_STATES) {
       (*front_door_fsm[front_door_current_state].state_function)();
+    }
+    if(climate_current_state < CLIMATE_NUM_STATES){
+      (*climate_fsm[climate_current_state].state_function)();
     }
 
     /**
@@ -140,9 +151,22 @@ void main(void) {
       Graphics_drawStringCentered(&g_sContext, (int8_t *)NO_EARTHQUAKE,
                                   AUTO_STRING_LENGTH, 64, 70, OPAQUE_TEXT);
     }
+    if(iswarm==1){
+      Graphics_drawStringCentered(&g_sContext, (int8_t *)IS_WARM,
+                                  AUTO_STRING_LENGTH, 64, 90, OPAQUE_TEXT);
+    }
+    if(iscold==1){
+      Graphics_drawStringCentered(&g_sContext, (int8_t *)IS_COLD,
+                                  AUTO_STRING_LENGTH, 64, 90, OPAQUE_TEXT);
+
+    }
 
     // Graphics_clearDisplay(&g_sContext);
     Graphics_drawStringCentered(&g_sContext, (int8_t *)"Embedded Project:",
                                 AUTO_STRING_LENGTH, 64, 20, OPAQUE_TEXT);
+  
   }
+
+
+  
 }

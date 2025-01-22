@@ -1,28 +1,30 @@
 #include "features/climate/fsm.h"
 
-void fn_climate_init(void){
-    climate_current_state=CLIMATE_STATE_SHUTOFF;
-}
-void fn_climate_radiator(void){
-    climate_current_state=CLIMATE_STATE_RADIATOR_ON;
-}
-void fn_climate_airconditioning(void){
-    climate_current_state=CLIMATE_STATE_AIRCONDITIONING_ON;
 
+void fn_climate_init(){
+    climate_current_state=CLIMATE_STATE_OFF;
 }
-void fn_climate_shutoff(void){
-    climate_current_state=CLIMATE_STATE_SHUTOFF;
-
+void fn_climate_radiator(){
+    climate_current_state=CLIMATE_STATE_RADIATOR;
 }
 
-extern Climate_state climate_current_state =CLIMATE_STATE_INIT;
+void fn_climate_off(){
+    climate_current_state=CLIMATE_STATE_OFF;
+
+}
+void fn_climate_airconditioning(){
+    climate_current_state=CLIMATE_STATE_AIRCONDITIONING;
+
+}
+
+extern Climate_state climate_current_state = CLIMATE_STATE_INIT;
 
 
 extern Climate_stateMachine climate_fsm[]={
     {CLIMATE_STATE_INIT,fn_climate_init},
-    {CLIMATE_STATE_SHUTOFF,fn_climate_shutoff},
-    {CLIMATE_STATE_RADIATOR_ON,fn_climate_radiator},
-    {CLIMATE_STATE_AIRCONDITIONING_ON,fn_climate_airconditioning}
+    {CLIMATE_STATE_RADIATOR,fn_climate_radiator},
+    {CLIMATE_STATE_OFF,fn_climate_off},
+    {CLIMATE_STATE_AIRCONDITIONING,fn_climate_airconditioning}
 };
 
 

@@ -1,27 +1,26 @@
-#ifndef FEATURES_CLIMATE_FSM_H_
-#define FEATURES_CLIMATE_FSM_H_
+#ifndef FEATURES_FSM_H_
+#define FEATURES_FSM_H_
 
-#include "events.h"
-
-typedef enum {
-    CLIMATE_STATE_RADIATOR_ON,
-    CLIMATE_STATE_AIRCONDITIONING_ON,
-    CLIMATE_STATE_SHUTOFF,
-    CLIMATE_STATE_INIT
+typedef enum{
+    CLIMATE_STATE_INIT,
+    CLIMATE_STATE_RADIATOR,
+    CLIMATE_STATE_OFF,
+    CLIMATE_STATE_AIRCONDITIONING,
+    CLIMATE_NUM_STATES
 }Climate_state;
 
-typedef struct Climate_state{
+typedef struct {
     Climate_state state;
     void(*state_function)(void);
 }Climate_stateMachine;
 
 void fn_climate_init(void);
 void fn_climate_radiator(void);
+void fn_climate_off(void);
 void fn_climate_airconditioning(void);
-void fn_climate_shutoff(void);
 
-extern Climate_state climate_current_state;
-extern Climate_stateMachine climate_fsm[];
+ Climate_state climate_current_state;
+ Climate_stateMachine climate_fsm[];
 
 #endif
 

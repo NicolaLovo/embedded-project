@@ -6,20 +6,15 @@
 #define CLIMATE_SHUTOFF_TEMPERATURE 22
 
 
-void climate_event_highTemperature(void); //when sensor become hotter (t>25)
-void climate_event_lowTemperature(void); //when sensor become colder  (t<19)
-void climate_event_turnOffTemperature(void); //when sensor is in these range (22<t<25) ||(19<t<22)
+v#ifndef FEATURES_EVENTS_H_
+#define FEATURES_EVENTS_H_
 
+void climate_event_under19(void);
+void climate_event_above22(void);
+void climate_event_above25(void);
+void climate_event_under22(void);
 
-
-/*typedef enum Temperature_Event{
-    LOW_TEMPERATURE,
-    TURNOFF_TEMPERATURE,
-    HIGH_TEMPERATURE
-
-}Temperature_Event;
-
-Temperature_Event temperature_check_event(int temperature);*/
+#endif
 
 
 
