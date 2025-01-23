@@ -101,10 +101,6 @@ void main(void) {
   int isDay;
   int isEarthquake;
   float temperature = IDLE_TEMPERATURE;
-
-  int iswarm;
-  int iscold;
-
   while (1) {
 
     if (door_current_state < DOOR_NUM_STATES) {

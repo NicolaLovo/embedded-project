@@ -52,7 +52,10 @@ The LCD has been used to display real-time events.
 > > Di "funzionalità" alla fine non ne usiamo tante...
 
 ### Presentation and video
+<<<<<<< HEAD
 
+=======
+>>>>>>> 128e51c56689d2ce1535a17544f94a9f08f59ab2
 -[Presentation](https://docs.google.com/presentation/d/1W6sGwKaeywJN_hmt3aGy_PK22Og2mWv0d_z1uNpjzVE/edit?usp=drivesdk)
 
 -[Video presentation]()
@@ -122,7 +125,10 @@ ARM linker file search path options:
 - `${PROJECT_ROOT}/../driverlib/source/ti/devices/msp432p4xx/driverlib/ccs/msp432p4xx_driverlib.lib`
 
 ### Burning and running the project
+<<<<<<< HEAD
 
+=======
+>>>>>>> 128e51c56689d2ce1535a17544f94a9f08f59ab2
 Use the CCS GUI (User's guide available [here](https://software-dl.ti.com/ccs/esd/documents/users_guide_ccs_20.0.0/index.html))
 
 ## Team members
