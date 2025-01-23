@@ -3,6 +3,7 @@
 #include "features/events.h"
 
 
+
 void climate_sensor_on_read(void){
     int temperature= climate_sensor_hw_readTemperature();
     if (temperature < LOWEST_TEMPERATURE) {
@@ -14,10 +15,6 @@ void climate_sensor_on_read(void){
     } else if (temperature >= HIGHEST_TEMPERATURE) {
         climate_event_above25();
     }
-    // Add a delay for readability and to avoid busy waiting
-    sensor_delay_ms(1000);
-    
-
 }
  
 

@@ -2,14 +2,16 @@
 
 #ifdef TESTING
 
-#include "testing/allarm/tests.h"
+#include "testing/alarm/tests.h"
 #include "testing/door/tests.h"
+#include "testing/climate/tests.h"
 #include "testing/irrigation/tests.h"
 
 void run_tests() {
   test_door_feature();
-  test_allarm_feature();
+  test_alarm_feature();
   test_irrigation_feature();
+  test_climate_feature();
 }
 
 #else

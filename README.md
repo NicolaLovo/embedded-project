@@ -1,15 +1,17 @@
 # Sylvanian Tech Family
 
-- [Project description](#project-description)
-  - [Presentation and video](#presentation-and-video)
+- [Sylvanian Tech Family](#sylvanian-tech-family)
+  - [Project Description](#project-description)
+      - [What's better than a domotic house? A Sylvanian Family domotic house!](#whats-better-than-a-domotic-house-a-sylvanian-family-domotic-house)
+    - [Presentation and video](#presentation-and-video)
   - [Requirements](#requirements)
-    - [Pin out](#pin-out)
     - [Hardware](#hardware)
     - [Software](#software)
+    - [Pin out](#pin-out)
   - [Getting started](#getting-started)
     - [Building the project](#building-the-project)
-    - [Burn and Run](#burning-and-running-the-project)
-  - [Team members]()
+    - [Burning and running the project](#burning-and-running-the-project)
+  - [Team members](#team-members)
   - [Project documentation](#project-documentation)
   - [Project layout](#project-layout)
 
@@ -31,7 +33,8 @@ Our aim is to implement in a single embedded system extensive control over the
 most frequently used things in a house.
 
 Many features have been added to the house:
-- Alarm system 
+
+- Alarm system
 - Earthquake detector
 - Automated lights
 - Automated front door
@@ -49,6 +52,7 @@ The LCD has been used to display real-time events.
 > > Di "funzionalità" alla fine non ne usiamo tante...
 
 ### Presentation and video
+
 -[Presentation](https://docs.google.com/presentation/d/1W6sGwKaeywJN_hmt3aGy_PK22Og2mWv0d_z1uNpjzVE/edit?usp=drivesdk)
 
 -[Video presentation]()
@@ -59,13 +63,13 @@ The LCD has been used to display real-time events.
 
 - [TI MSP432P401R Microcontroller](https://www.ti.com/lit/ds/slas826e/slas826e.pdf)
 - [TI BOOSTXL-EDUMKII BoosterPack](https://www.ti.com/tool/BOOSTXL-EDUMKII)
-    - Sensors used:
-      - light sensor
-      - temperature sensor
-      - accelerometer
-      - button S1
-      - button S2
-      - voltmeter
+  - Sensors used:
+    - light sensor
+    - temperature sensor
+    - accelerometer
+    - button S1
+    - button S2
+    - voltmeter
 - Breadboard
 - 2 LEDs
 - 1 servo motor
@@ -79,11 +83,14 @@ The LCD has been used to display real-time events.
 > > Altro?
 
 ### Software
+
 - [CodeComposerStudio](https://www.ti.com/tool/download/CCSTUDIO/12.2.0)
-> > Che serve?? CCS studio? altro?
+  > > Che serve?? CCS studio? altro?
 
 ### Pin out
+
 > > Qua, Cristiano, pensavi di fare mappatura pin con thinkercad?
+
 - Red Led: J1.5 maps to Port 4.1
 - Blu led: J1.6 maps to Port 4.3
 - Additional Buzzer: J4.40 maps to Port 2.7
@@ -115,6 +122,7 @@ ARM linker file search path options:
 - `${PROJECT_ROOT}/../driverlib/source/ti/devices/msp432p4xx/driverlib/ccs/msp432p4xx_driverlib.lib`
 
 ### Burning and running the project
+
 Use the CCS GUI (User's guide available [here](https://software-dl.ti.com/ccs/esd/documents/users_guide_ccs_20.0.0/index.html))
 
 ## Team members
@@ -141,7 +149,7 @@ Every team member is responsible for the whole project, despite individual contr
 │   └───source
 └───embedded-project-src
 │   ├───features
-│   │   ├───allarm
+│   │   ├───alarm
 │   │   ├───climate
 │   │   ├───door
 │   │   ├───frontDoorLight
@@ -155,7 +163,7 @@ Every team member is responsible for the whole project, despite individual contr
 │   │   └───servo
 │   ├───sensors
 │   │   ├───accelerometer
-│   │   ├───allarm
+│   │   ├───alarm
 │   │   ├───climate
 │   │   ├───doorButton
 │   │   ├───irrigationButton
@@ -163,7 +171,7 @@ Every team member is responsible for the whole project, despite individual contr
 │   │   └───voltmeter
 │   ├───targetConfigs
 │   ├───testing
-│   │   ├───allarm
+│   │   ├───alarm
 │   │   └───door
 │   └───tools
 └───LcdDriver

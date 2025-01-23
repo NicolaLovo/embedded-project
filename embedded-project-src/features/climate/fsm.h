@@ -1,5 +1,5 @@
-#ifndef FEATURES_FSM_H_
-#define FEATURES_FSM_H_
+#ifndef __CLIMATE_FSM_H__
+#define __CLIMATE_FSM_H__
 
 typedef enum{
     CLIMATE_STATE_INIT,
@@ -19,8 +19,8 @@ void fn_climate_radiator(void);
 void fn_climate_off(void);
 void fn_climate_airconditioning(void);
 
- Climate_state climate_current_state;
- Climate_stateMachine climate_fsm[];
+extern Climate_state climate_current_state;
+extern Climate_stateMachine climate_fsm[];
 
 #endif
 
