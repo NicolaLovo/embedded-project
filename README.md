@@ -67,9 +67,7 @@ The LCD has been used to display real-time events.
 - 1 buzzer
 - wires
 
-<img src="./docs/msp_exp432p401r.jpg" alt="drawing" height="150"/>
-
-<img src="./docs/boosterpack.png" alt="drawing" width="250"/>
+<img src="./docs/msp_exp432p401r.jpg" alt="drawing" height="150"/> <img src="./docs/boosterpack.png" alt="drawing" width="250"/>
 
 ### Software
 
