@@ -1,9 +1,8 @@
 #include "config.h"
 
-
 #ifdef TESTING
 
-void test_alarm_feature(void);
+void test_climate_feature(void);
 
 #else
 
