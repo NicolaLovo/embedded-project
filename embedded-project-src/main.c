@@ -39,6 +39,7 @@
 #include "outputs/buzzer/buzzer_hw.h"
 #include "outputs/redLED/redLED.h"
 #include "outputs/servo/servo_hw.h"
+#include "outputs/rgbLED/rgbLED.h"
 
 #include "testing/tests.h"
 
@@ -79,6 +80,8 @@ void hw_init(void) {
   red_led_hw_init();
 
   climate_sensor_hw_init();
+
+  rgb_led_hw_init();
 
 }
 
@@ -128,7 +131,7 @@ void main(void) {
     temperature = climate_sensor_hw_readTemperature();
     light_on_read(lux);
     // printf("Temperature: %.2f\n", temperature);
-    // climate_sensor_on_read(temperature);
+    climate_sensor_on_read(temperature);
 
     contact = voltage_is_high();
     isDay = light_is_day();

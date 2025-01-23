@@ -10,15 +10,6 @@ float calDifference;
 float tempC;
 
 void climate_sensor_hw_init(void){
-    /* configuration of LED */
-    GPIO_setAsOutputPin(GPIO_PORT_P2, GPIO_PIN0); // red LED 
-    GPIO_setAsOutputPin(GPIO_PORT_P2, GPIO_PIN1); // green LED 
-    GPIO_setAsOutputPin(GPIO_PORT_P2, GPIO_PIN2); // blue LED 
-    
-    GPIO_setOutputLowOnPin(GPIO_PORT_P2, GPIO_PIN0); // red:turn off 
-    GPIO_setOutputLowOnPin(GPIO_PORT_P2, GPIO_PIN1); // green:turn off 
-    GPIO_setOutputLowOnPin(GPIO_PORT_P2, GPIO_PIN2); // blue:turn off 
-
     Init_I2C_GPIO();
     I2C_init();
     /* Initialize TMP006 temperature sensor */
@@ -30,7 +21,7 @@ void climate_sensor_hw_init(void){
 float climate_sensor_hw_readTemperature(void){
     float tempFarenheit = TMP006_getTemp();
     float tempC = (tempFarenheit - 32) * 5.0/9.0;
-    return tempC;
+    return tempC - 10;
 }
 
 //sensor interrupt handling 

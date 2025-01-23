@@ -1,19 +1,24 @@
 #include "features/climate/fsm.h"
+#include "outputs/rgbLED/rgbLED.h"
 
 
 void fn_climate_init(){
     climate_current_state=CLIMATE_STATE_OFF;
+    rgb_set_off();
 }
 void fn_climate_radiator(){
     climate_current_state=CLIMATE_STATE_RADIATOR;
+    rgb_set_red();
 }
 
 void fn_climate_off(){
     climate_current_state=CLIMATE_STATE_OFF;
+    rgb_set_off();
 
 }
 void fn_climate_airconditioning(){
     climate_current_state=CLIMATE_STATE_AIRCONDITIONING;
+    rgb_set_blue();
 
 }
 
