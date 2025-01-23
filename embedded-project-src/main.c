@@ -42,15 +42,17 @@
 
 #include "testing/tests.h"
 
-#define IS_DAY "Is Sunny"
-#define IS_NIGHT "Is Night"
-#define ALARM_ON "Alarm  On"
-#define ALARM_OFF "Alarm Off"
-#define NO_EARTHQUAKE "                   "
-#define EARTHQUAKE "!!! EARTHQUAKE !!!"
-#define IS_WARM "Air conditioning on"
-#define IS_COLD "Radiator on"
-
+#define SCREEN_IS_DAY_STRING "Is Sunny"
+#define SCREEN_IS_NIGHT_STRING "Is Night"
+#define SCREEN_ALARM_ON_STRING "Alarm  On"
+#define SCREEN_ALARM_OFF_STRING "Alarm Off"
+#define SCREEN_ALARM_IDLE_STRING "              "
+#define SCREEN_NO_EARTHQUAKE_STRING "                   "
+#define SCREEN_EARTHQUAKE_STRING "!!! EARTHQUAKE !!!"
+#define SCREEN_IS_WARM_STRING "Air conditioning on"
+#define SCREEN_IS_COLD_STRING "Radiator on"
+#define SCREEN_DOOR_OPEN_STRING "Door opened"
+#define SCREEN_DOOR_CLOSE_STRING "Door closed"
 
 /**
  * Initialize all the hardware components (output)
@@ -128,37 +130,49 @@ void main(void) {
     isEarthquake = earthquake_active();
 
     if (isDay == 1) {
-      Graphics_drawStringCentered(&g_sContext, (int8_t *)IS_DAY,
+      Graphics_drawStringCentered(&g_sContext, (int8_t *)SCREEN_IS_DAY_STRING,
                                   AUTO_STRING_LENGTH, 64, 40, OPAQUE_TEXT);
-      Graphics_drawStringCentered(&g_sContext, (int8_t *)"              ",
+      Graphics_drawStringCentered(&g_sContext, (int8_t *)SCREEN_ALARM_IDLE_STRING,
                                   AUTO_STRING_LENGTH, 64, 50, OPAQUE_TEXT);
     } else {
-      Graphics_drawStringCentered(&g_sContext, (int8_t *)IS_NIGHT,
+      Graphics_drawStringCentered(&g_sContext, (int8_t *)SCREEN_IS_NIGHT_STRING,
                                   AUTO_STRING_LENGTH, 64, 40, OPAQUE_TEXT);
       if (contact == 1) {
-        Graphics_drawStringCentered(&g_sContext, (int8_t *)ALARM_ON,
+        Graphics_drawStringCentered(&g_sContext, (int8_t *)SCREEN_ALARM_ON_STRING,
                                     AUTO_STRING_LENGTH, 64, 50, OPAQUE_TEXT);
       } else {
-        Graphics_drawStringCentered(&g_sContext, (int8_t *)ALARM_OFF,
+        Graphics_drawStringCentered(&g_sContext, (int8_t *)SCREEN_ALARM_OFF_STRING,
                                     AUTO_STRING_LENGTH, 64, 50, OPAQUE_TEXT);
       }
     }
 
     if (isEarthquake) {
-      Graphics_drawStringCentered(&g_sContext, (int8_t *)EARTHQUAKE,
+      Graphics_drawStringCentered(&g_sContext, (int8_t *)SCREEN_EARTHQUAKE_STRING,
                                   AUTO_STRING_LENGTH, 64, 70, OPAQUE_TEXT);
     } else {
-      Graphics_drawStringCentered(&g_sContext, (int8_t *)NO_EARTHQUAKE,
+      Graphics_drawStringCentered(&g_sContext, (int8_t *)SCREEN_NO_EARTHQUAKE_STRING,
                                   AUTO_STRING_LENGTH, 64, 70, OPAQUE_TEXT);
     }
     if(iswarm==1){
-      Graphics_drawStringCentered(&g_sContext, (int8_t *)IS_WARM,
+      Graphics_drawStringCentered(&g_sContext, (int8_t *)SCREEN_IS_WARM_STRING,
                                   AUTO_STRING_LENGTH, 64, 90, OPAQUE_TEXT);
     }
     if(iscold==1){
-      Graphics_drawStringCentered(&g_sContext, (int8_t *)IS_COLD,
+      Graphics_drawStringCentered(&g_sContext, (int8_t *)SCREEN_IS_COLD_STRING,
                                   AUTO_STRING_LENGTH, 64, 90, OPAQUE_TEXT);
 
+    }
+
+    switch(door_current_state){
+      case DOOR_STATE_OPEN:
+      case DOOR_STATE_FORCE_OPEN:
+        Graphics_drawStringCentered(&g_sContext, (int8_t *)SCREEN_DOOR_OPEN_STRING,
+                                    AUTO_STRING_LENGTH, 64, 110, OPAQUE_TEXT);
+        break;
+      case DOOR_STATE_CLOSE:
+        Graphics_drawStringCentered(&g_sContext, (int8_t *)SCREEN_DOOR_CLOSE_STRING,
+                                    AUTO_STRING_LENGTH, 64, 110, OPAQUE_TEXT);
+        break;
     }
 
     // Graphics_clearDisplay(&g_sContext);
