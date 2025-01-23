@@ -10,7 +10,7 @@
 #define SHUTOFF_TEMPERATURE 22
 
 //combine event and temperature 
-void climate_sensor_on_read_handleTemperature(void);
+void climate_sensor_on_read(void);
 
 
 
