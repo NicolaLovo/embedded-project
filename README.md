@@ -2,7 +2,7 @@
 
 - [Sylvanian Tech Family](#sylvanian-tech-family)
   - [Project Description](#project-description)
-      - [What's better than a domotic house? A Sylvanian Family domotic house!](#whats-better-than-a-domotic-house-a-sylvanian-family-domotic-house)
+    - [What's better than a domotic house? A Sylvanian Family domotic house!](#whats-better-than-a-domotic-house-a-sylvanian-family-domotic-house)
     - [Presentation and video](#presentation-and-video)
   - [Requirements](#requirements)
     - [Hardware](#hardware)
@@ -44,6 +44,7 @@ Many features have been added to the house:
 The LCD has been used to display real-time events.
 
 ### Presentation and video
+
 -[Presentation](https://docs.google.com/presentation/d/1W6sGwKaeywJN_hmt3aGy_PK22Og2mWv0d_z1uNpjzVE/edit?usp=drivesdk)
 
 -[Video presentation]()
@@ -108,6 +109,7 @@ ARM linker file search path options:
 - `${PROJECT_ROOT}/../driverlib/source/ti/devices/msp432p4xx/driverlib/ccs/msp432p4xx_driverlib.lib`
 
 ### Burning and running the project
+
 Use the CCS GUI (User's guide available [here](https://software-dl.ti.com/ccs/esd/documents/users_guide_ccs_20.0.0/index.html))
 
 ## Team members
@@ -120,6 +122,7 @@ Every team member is responsible for the whole project, despite individual contr
 - Prati Matilde designed house climate system and handled temperature sensor outputs
 
 ## Project documentation
+
 - [Project diagram](https://drive.google.com/file/d/1CTdshm4JGh88nT_NAp6nMx0BeLaoV-mB/view?usp=sharing)
 
 ## Project layout
@@ -133,7 +136,6 @@ Every team member is responsible for the whole project, despite individual contr
     │   ├───alarm
     │   ├───climate
     │   ├───door
-    │   ├───frontDoorLight
     │   └───irrigation
     ├───lcdDisplay
     ├───outputs

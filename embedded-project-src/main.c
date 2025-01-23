@@ -20,9 +20,6 @@
 #include "features/alarm/events.h"
 #include "features/alarm/fsm.h"
 
-#include "features/frontDoorLight/events.h"
-#include "features/frontDoorLight/fsm.h"
-
 #include "sensors/accelerometer/sensor_hw.h"
 #include "sensors/accelerometer/sensor_on_read.h"
 #include "sensors/doorButton/sensor_hw.h"
@@ -111,9 +108,6 @@ void main(void) {
     }
     if (alarm_current_state < ALARM_NUM_STATES) {
       (*alarm_fsm[alarm_current_state].state_function)();
-    }
-    if (front_door_current_state < FRONT_DOOR_LIGHT_NUM_STATES) {
-      (*front_door_fsm[front_door_current_state].state_function)();
     }
     if(climate_current_state < CLIMATE_NUM_STATES){
       (*climate_fsm[climate_current_state].state_function)();
