@@ -43,19 +43,7 @@ Many features have been added to the house:
 
 The LCD has been used to display real-time events.
 
-> > "Many functionalities of a microcontroller have been used:
-> > pwm, i2c protocol, serial communication, digital write, digital read
-> > and task management as in a modern rtos using physical interrupts,
-> > timer interrupts etc..."
-
-> > Questo ha senso metterlo per noi o ci tiriamo la zappa sui piedi da soli?
-> > Di "funzionalità" alla fine non ne usiamo tante...
-
 ### Presentation and video
-<<<<<<< HEAD
-
-=======
->>>>>>> 128e51c56689d2ce1535a17544f94a9f08f59ab2
 -[Presentation](https://docs.google.com/presentation/d/1W6sGwKaeywJN_hmt3aGy_PK22Og2mWv0d_z1uNpjzVE/edit?usp=drivesdk)
 
 -[Video presentation]()
@@ -83,20 +71,17 @@ The LCD has been used to display real-time events.
 
 <img src="./docs/boosterpack.png" alt="drawing" width="250"/>
 
-> > Altro?
-
 ### Software
 
 - [CodeComposerStudio](https://www.ti.com/tool/download/CCSTUDIO/12.2.0)
-  > > Che serve?? CCS studio? altro?
 
 ### Pin out
-
-> > Qua, Cristiano, pensavi di fare mappatura pin con thinkercad?
 
 - Red Led: J1.5 maps to Port 4.1
 - Blu led: J1.6 maps to Port 4.3
 - Additional Buzzer: J4.40 maps to Port 2.7
+
+<img src="./docs/tink.png" alt="drawing" height="150">
 
 ## Getting started
 
@@ -125,10 +110,6 @@ ARM linker file search path options:
 - `${PROJECT_ROOT}/../driverlib/source/ti/devices/msp432p4xx/driverlib/ccs/msp432p4xx_driverlib.lib`
 
 ### Burning and running the project
-<<<<<<< HEAD
-
-=======
->>>>>>> 128e51c56689d2ce1535a17544f94a9f08f59ab2
 Use the CCS GUI (User's guide available [here](https://software-dl.ti.com/ccs/esd/documents/users_guide_ccs_20.0.0/index.html))
 
 ## Team members
@@ -141,10 +122,6 @@ Every team member is responsible for the whole project, despite individual contr
 - Prati Matilde designed house climate system and handled temperature sensor outputs
 
 ## Project documentation
-
-> > Togliamo requirements document???
-
-- [Requirements document](https://docs.google.com/document/d/1dMhPBvmx1WDsUFHWIUvdtsMsZ3I_5LDLPtr0CWYLqqE/edit?usp=sharing)
 - [Project diagram](https://drive.google.com/file/d/1CTdshm4JGh88nT_NAp6nMx0BeLaoV-mB/view?usp=sharing)
 
 ## Project layout
@@ -154,31 +131,33 @@ Every team member is responsible for the whole project, despite individual contr
 ├───driverlib
 │   └───source
 └───embedded-project-src
-│   ├───features
-│   │   ├───alarm
-│   │   ├───climate
-│   │   ├───door
-│   │   ├───frontDoorLight
-│   │   ├───irrigation
-│   │   └───radiator
-│   ├───lcdDisplay
-│   ├───outputs
-│   │   ├───blueLED
-│   │   ├───buzzer
-│   │   ├───redLED
-│   │   └───servo
-│   ├───sensors
-│   │   ├───accelerometer
-│   │   ├───alarm
-│   │   ├───climate
-│   │   ├───doorButton
-│   │   ├───irrigationButton
-│   │   ├───light
-│   │   └───voltmeter
-│   ├───targetConfigs
-│   ├───testing
-│   │   ├───alarm
-│   │   └───door
-│   └───tools
-└───LcdDriver
+    ├───features
+    │   ├───alarm
+    │   ├───climate
+    │   ├───door
+    │   ├───frontDoorLight
+    │   └───irrigation
+    ├───lcdDisplay
+    ├───outputs
+    │   ├───blueLED
+    │   ├───buzzer
+    │   ├───redLED
+    │   ├───rgbLED
+    │   └───servo
+    ├───sensors
+    │   ├───accelerometer
+    │   ├───alarm
+    │   ├───climate
+    │   ├───doorButton
+    │   ├───irrigationButton
+    │   ├───light
+    │   └───voltmeter
+    ├───targetConfigs
+    ├───testing
+    │   ├───alarm
+    │   ├───climate
+    │   ├───door
+    │   └───irrigation
+    └───tools
+        └───LcdDriver
 ```
