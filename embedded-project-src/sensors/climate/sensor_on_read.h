@@ -7,10 +7,10 @@
 
 #define LOWEST_TEMPERATURE 19
 #define HIGHEST_TEMPERATURE 25
-#define SHUTOFF_TEMPERATURE 22
+#define IDLE_TEMPERATURE 22
 
 //combine event and temperature 
-void climate_sensor_on_read(void);
+void climate_sensor_on_read(float temperature);
 
 
 

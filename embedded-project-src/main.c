@@ -55,7 +55,7 @@
 #define SCREEN_DOOR_CLOSE_STRING "Door closed"
 
 /**
- * Initialize all the hardware components (output)
+ * Initialize all the hardware components
  */
 void hw_init(void) {
   light_hw_init();
@@ -78,6 +78,8 @@ void hw_init(void) {
 
   red_led_hw_init();
 
+  climate_sensor_hw_init();
+
 }
 
 void main(void) {
@@ -95,6 +97,7 @@ void main(void) {
   int contact;
   int isDay;
   int isEarthquake;
+  float temperature = IDLE_TEMPERATURE;
 
   int iswarm;
   int iscold;
@@ -122,7 +125,10 @@ void main(void) {
      * interrupts
      */
     lux = read_light();
+    temperature = climate_sensor_hw_readTemperature();
     light_on_read(lux);
+    // printf("Temperature: %.2f\n", temperature);
+    // climate_sensor_on_read(temperature);
 
     contact = voltage_is_high();
     isDay = light_is_day();
@@ -153,16 +159,11 @@ void main(void) {
       Graphics_drawStringCentered(&g_sContext, (int8_t *)SCREEN_NO_EARTHQUAKE_STRING,
                                   AUTO_STRING_LENGTH, 64, 70, OPAQUE_TEXT);
     }
-    if(iswarm==1){
-      Graphics_drawStringCentered(&g_sContext, (int8_t *)SCREEN_IS_WARM_STRING,
-                                  AUTO_STRING_LENGTH, 64, 90, OPAQUE_TEXT);
-    }
-    if(iscold==1){
-      Graphics_drawStringCentered(&g_sContext, (int8_t *)SCREEN_IS_COLD_STRING,
-                                  AUTO_STRING_LENGTH, 64, 90, OPAQUE_TEXT);
-
-    }
-
+    char tempString[10];
+    sprintf(tempString, "Temp: %.2f", temperature);
+    Graphics_drawStringCentered(&g_sContext, (int8_t *)tempString,
+                                AUTO_STRING_LENGTH, 64, 80, OPAQUE_TEXT);
+  
     switch(door_current_state){
       case DOOR_STATE_OPEN:
       case DOOR_STATE_FORCE_OPEN:

@@ -1,5 +1,7 @@
 #include "sensor_hw.h"
 #include "sensor_on_read.h" 
+#include "tools/HAL_I2C.h"
+#include "tools/HAL_TMP006.h"
 #include <stdint.h>
 
 uint32_t cal30;
@@ -8,9 +10,6 @@ float calDifference;
 float tempC;
 
 void climate_sensor_hw_init(void){
-    /* Halting WDT */
-    WDT_A_holdTimer();
-
     /* configuration of LED */
     GPIO_setAsOutputPin(GPIO_PORT_P2, GPIO_PIN0); // red LED 
     GPIO_setAsOutputPin(GPIO_PORT_P2, GPIO_PIN1); // green LED 
@@ -20,55 +19,18 @@ void climate_sensor_hw_init(void){
     GPIO_setOutputLowOnPin(GPIO_PORT_P2, GPIO_PIN1); // green:turn off 
     GPIO_setOutputLowOnPin(GPIO_PORT_P2, GPIO_PIN2); // blue:turn off 
 
-    /* Setting reference voltage to 2.5 and enabling temperature sensor */
-    REF_A_enableTempSensor();
-    REF_A_setReferenceVoltage(REF_A_VREF2_5V);
-    REF_A_enableReferenceVoltage();
-
-    /* lettura dei valori di calibrazione */
-    cal30 = SysCtl_getTempCalibrationConstant(SYSCTL_2_5V_REF, SYSCTL_30_DEGREES_C);
-    cal85 = SysCtl_getTempCalibrationConstant(SYSCTL_2_5V_REF, SYSCTL_85_DEGREES_C);
-    calDifference = cal85 - cal30;
-
-    /* configuration of modulo ADC */
-    ADC14_enableModule();
-    ADC14_initModule(ADC_CLOCKSOURCE_MCLK, ADC_PREDIVIDER_1, ADC_DIVIDER_1, ADC_TEMPSENSEMAP);
-
-    /* configuration of ADC memory for temperature sensor */
-    ADC14_configureSingleSampleMode(ADC_MEM0, true);
-    ADC14_configureConversionMemory(ADC_MEM0, ADC_VREFPOS_INTBUF_VREFNEG_VSS, ADC_INPUT_A22, false);
-
-    /* configuration del tempo di campionamento */
-    ADC14_setSampleHoldTime(ADC_PULSE_WIDTH_192, ADC_PULSE_WIDTH_192);
-
-    /* abilitation of timer di campionamento in modalità iterativa automatica */
-    ADC14_enableSampleTimer(ADC_AUTOMATIC_ITERATION);
-    ADC14_enableInterrupt(ADC_INT0);
-
-    /* abilitation of global interrupts  */
-    Interrupt_enableInterrupt(INT_ADC14);
-    Interrupt_enableMaster();
-
-    /* play della conversione */
-    ADC14_enableConversion();
-    ADC14_toggleConversionTrigger();
+    Init_I2C_GPIO();
+    I2C_init();
+    /* Initialize TMP006 temperature sensor */
+    TMP006_init();
+    __delay_cycles(100000);
 
 }
 
-int climate_sensor_hw_readTemperature(void){
-
-    int16_t conRes;
-    float tempC;
-
-    /* Attesa del completamento della conversione */
-    while (!ADC14_isBusy()) {}
-
-    /* Lettura del risultato dalla memoria ADC */
-    conRes = ((ADC14_getResult(ADC_MEM0) - cal30) * 55);
-    tempC = (conRes / calDifference) + 30.0f;
-
-    return (int)tempC; // Restituisce la temperatura in gradi Celsius
-    
+float climate_sensor_hw_readTemperature(void){
+    float tempFarenheit = TMP006_getTemp();
+    float tempC = (tempFarenheit - 32) * 5.0/9.0;
+    return tempC;
 }
 
 //sensor interrupt handling 

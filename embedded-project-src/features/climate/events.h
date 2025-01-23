@@ -3,27 +3,28 @@
 
 #define CLIMATE_LOWEST_TEMPERATURE 19
 #define CLIMATE_HIGHEST_TEMPERATURE 25
-#define CLIMATE_SHUTOFF_TEMPERATURE 22
+#define CLIMATE_IDLE_TEMPERATURE 22
 
 
 /**
-No good: embedding constants in function names. Let's assign an alias to each event.
-low = 19
-high = 25
-medium = 22
- 
-climate_on_under_medium() // temp < 22
-climate_on_above_medium() // temp > 22
-
-climate_on_under_low() // temp < 19
-climate_on_above_high() // temp > 25
-
+ * @brief Turn on the radiator if the temperature is below 19
  */
+void climate_on_under_low(void);
 
-void climate_event_under19(void);
-void climate_event_above22(void);
-void climate_event_above25(void);
-void climate_event_under22(void);
+/**
+ * @brief Turn off the radiator if the temperature is above 22
+ */
+void climate_on_above_idle(void);
+
+/**
+ * @brief Turn on the air conditioning if the temperature is above 25
+ */
+void climate_on_under_idle(void);
+
+/**
+ * @brief Turn off the air conditioning if the temperature is above 25
+ */
+void climate_on_above_high(void);
 
 
 

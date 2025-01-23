@@ -16,10 +16,10 @@ float calDifference;
 void climate_sensor_hw_init(void);
 
 //read temperature of sensor 
-int climate_sensor_hw_readTemperature(void);
+float climate_sensor_hw_readTemperature(void);
 
 //ISR: INTERRUPT
-void ADC14_IRQHandler(void);
+// void ADC14_IRQHandler(void);
 
 /*
 MAIN 
