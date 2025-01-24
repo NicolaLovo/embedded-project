@@ -96,7 +96,7 @@ void main(void) {
   float lux;
   int contact;
   int isDay;
-  int isEarthquake;
+  int isEarthquake = 0;
   float temperature = IDLE_TEMPERATURE;
   while (1) {
 
