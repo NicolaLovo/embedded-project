@@ -13,8 +13,7 @@ void accelerometer_hw_init(void) {
 
         /* Initializing ADC (ADCOSC/64/8) */
         ADC14_enableModule();
-        ADC14_initModule(ADC_CLOCKSOURCE_ADCOSC, ADC_PREDIVIDER_64, ADC_DIVIDER_8,
-                         0);
+        ADC14_initModule(ADC_CLOCKSOURCE_ADCOSC, ADC_PREDIVIDER_64, ADC_DIVIDER_8, 0);
 
         /* Configuring ADC Memory (ADC_MEM0 - ADC_MEM2 (A11, A13, A14)  with no repeat)
          * with 3.3v reference */
@@ -30,6 +29,7 @@ void accelerometer_hw_init(void) {
         ADC14_configureConversionMemory(ADC_MEM2,
                                         ADC_VREFPOS_AVCC_VREFNEG_VSS,
                                         ADC_INPUT_A11, ADC_NONDIFFERENTIAL_INPUTS);
+
 
         /* Enabling the interrupt when a conversion on channel 2 (end of sequence)
          * is complete and enabling conversions */

@@ -17,26 +17,26 @@ void run_irrigation_fsm() {
 
 void test_irrigation_feature() {
   /**
-   * verify irrigationis initialized
+   * verify irrigation is initialized
    */
   assert(irrigation_current_state == IRRIGATION_STATE_INIT);
   run_irrigation_fsm();
 
   /**
-   * verify irrigations idle after being initialized
+   * verify irrigation is idle after being initialized
    */
   assert(irrigation_current_state == IRRIGATION_STATE_IDLE);
   run_irrigation_fsm();
 
   /**
-   * trigger event: button pressed -> expect irrigation irrigate state
+   * trigger event: button pressed -> expect irrigation state 'irrigate'
    */
   irrigation_event_button_pressed();
   assert(irrigation_current_state == IRRIGATION_STATE_IRRIGATE);
   run_irrigation_fsm();
 
   /**
-   * trigger event: button pressed -> expect irrigation idle state
+   * trigger event: button pressed -> expect irrigation state 'idle'
    */
   irrigation_event_button_pressed();
   assert(irrigation_current_state == IRRIGATION_STATE_IDLE);

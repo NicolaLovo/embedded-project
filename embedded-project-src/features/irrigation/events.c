@@ -2,7 +2,7 @@
 #include "features/irrigation/fsm.h"
 #include "outputs/blueLED/blueLED.h"
 
-
+/*
 // Called when temp sensor is high (above a threshold)
 void irrigation_event_highTemp(void){
     if (irrigation_current_state != IRRIGATION_STATE_IRRIGATE){
@@ -16,6 +16,7 @@ void irrigation_event_lowTemp(void){
     irrigation_current_state = IRRIGATION_STATE_IDLE;
     fn_irrigation_idle();
 }
+*/
 
 //  Called when the button for irrigation is pressed
 void irrigation_event_button_pressed(void){
@@ -35,7 +36,6 @@ void irrigation_event_button_pressed(void){
         fn_irrigation_on();
         break;
       }
-
   }
 }
 

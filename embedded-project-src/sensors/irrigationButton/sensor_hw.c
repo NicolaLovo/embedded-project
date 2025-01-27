@@ -25,7 +25,7 @@ void PORT5_IRQHandler(void)
         // clear interrupt flag
         GPIO_clearInterruptFlag(IRRIGATION_BUTTON_PORT, IRRIGATION_BUTTON_PIN);
 
-        // button press
+        // call button on press function
         irrigation_button_on_press();
     }
 

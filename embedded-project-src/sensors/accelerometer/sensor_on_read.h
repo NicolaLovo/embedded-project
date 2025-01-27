@@ -14,7 +14,10 @@ typedef enum {
     ACTIVE,     // Earthquake
     STABILIZING // Waiting for stabilization
 } EarthquakeState;
+
+// variable that stores the state of the earthquake
 volatile extern EarthquakeState state;
+
 /**
  * Hw-independent function to be called by the accelerometer isr
  * Calls accordingly the events to mutate the fsm of the features
