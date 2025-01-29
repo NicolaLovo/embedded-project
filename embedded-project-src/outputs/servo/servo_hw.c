@@ -11,7 +11,7 @@ void servo_hw_init(void) {
         TIMER_PERIOD,                  // 50 Hz period (20 ms)
         TIMER_A_CAPTURECOMPARE_REGISTER_2, // Use CCR2 (for TA0.2 on P2.5)
         TIMER_A_OUTPUTMODE_RESET_SET,  // Set/Reset mode for PWM
-        SERVO_MIN_DUTY_CYCLE           // Initial pulse width: 0° position
+        SERVO_MIN_DUTY_CYCLE           // Initial pulse width: 0ï¿½ position
     };
 
     // Generate PWM for Timer A0.2 on the abstracted port and pin

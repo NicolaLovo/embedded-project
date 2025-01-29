@@ -36,9 +36,5 @@ float read_light(void);
  */
 bool light_is_day();
 
-/**
- * Interrupt handler for door button
- */
-//void PORT4_IRQHandler(void);
 
 #endif
