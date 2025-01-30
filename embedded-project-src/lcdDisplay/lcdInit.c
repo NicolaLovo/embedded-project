@@ -1,7 +1,6 @@
 #include "lcdDisplay/lcdInit.h"
 
 void lcd_hw_init() {
-  // void graphicsInit() {
   /* Initializes display */
   Crystalfontz128x128_Init();
 
@@ -18,5 +17,4 @@ void lcd_hw_init() {
   Graphics_drawStringCentered(&g_sContext,
                               (int8_t *)"Embedded Project:", AUTO_STRING_LENGTH,
                               64, 20, OPAQUE_TEXT);
-  // }
 }

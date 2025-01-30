@@ -22,6 +22,8 @@
 
 #include "sensors/accelerometer/sensor_hw.h"
 #include "sensors/accelerometer/sensor_on_read.h"
+#include "sensors/climate/sensor_hw.h"
+#include "sensors/climate/sensor_on_read.h"
 #include "sensors/doorButton/sensor_hw.h"
 #include "sensors/irrigationButton/sensor_hw.h"
 #include "sensors/irrigationButton/sensor_on_read.h"
@@ -29,14 +31,12 @@
 #include "sensors/light/sensor_on_read.h"
 #include "sensors/voltmeter/sensor_hw.h"
 #include "sensors/voltmeter/sensor_on_read.h"
-#include "sensors/climate/sensor_hw.h"
-#include "sensors/climate/sensor_on_read.h"
 
 #include "outputs/blueLED/blueLED.h"
 #include "outputs/buzzer/buzzer_hw.h"
 #include "outputs/redLED/redLED.h"
-#include "outputs/servo/servo_hw.h"
 #include "outputs/rgbLED/rgbLED.h"
+#include "outputs/servo/servo_hw.h"
 
 #include "testing/tests.h"
 
@@ -79,7 +79,6 @@ void hw_init(void) {
   climate_sensor_hw_init();
 
   rgb_led_hw_init();
-
 }
 
 void main(void) {
@@ -109,7 +108,7 @@ void main(void) {
     if (alarm_current_state < ALARM_NUM_STATES) {
       (*alarm_fsm[alarm_current_state].state_function)();
     }
-    if(climate_current_state < CLIMATE_NUM_STATES){
+    if (climate_current_state < CLIMATE_NUM_STATES) {
       (*climate_fsm[climate_current_state].state_function)();
     }
 
@@ -123,58 +122,69 @@ void main(void) {
     // printf("Temperature: %.2f\n", temperature);
     climate_sensor_on_read(temperature);
 
+    // Cristiano part, apart from the light_is_day() function
+
+    // Check if the voltage is high or low
     contact = voltage_is_high();
+    // Check if is day or night
     isDay = light_is_day();
+    // set the alarm state machine. If is day alarm is in the idle state, if is
+    // night alarm is active and when a contact is detected the buzzer and the
+    // red led are turned on
     voltage_on_read(contact, isDay);
+
     isEarthquake = earthquake_active();
 
     if (isDay == 1) {
       Graphics_drawStringCentered(&g_sContext, (int8_t *)SCREEN_IS_DAY_STRING,
                                   AUTO_STRING_LENGTH, 64, 40, OPAQUE_TEXT);
-      Graphics_drawStringCentered(&g_sContext, (int8_t *)SCREEN_ALARM_IDLE_STRING,
+      Graphics_drawStringCentered(&g_sContext,
+                                  (int8_t *)SCREEN_ALARM_IDLE_STRING,
                                   AUTO_STRING_LENGTH, 64, 50, OPAQUE_TEXT);
     } else {
       Graphics_drawStringCentered(&g_sContext, (int8_t *)SCREEN_IS_NIGHT_STRING,
                                   AUTO_STRING_LENGTH, 64, 40, OPAQUE_TEXT);
       if (contact == 1) {
-        Graphics_drawStringCentered(&g_sContext, (int8_t *)SCREEN_ALARM_ON_STRING,
+        Graphics_drawStringCentered(&g_sContext,
+                                    (int8_t *)SCREEN_ALARM_ON_STRING,
                                     AUTO_STRING_LENGTH, 64, 50, OPAQUE_TEXT);
       } else {
-        Graphics_drawStringCentered(&g_sContext, (int8_t *)SCREEN_ALARM_OFF_STRING,
+        Graphics_drawStringCentered(&g_sContext,
+                                    (int8_t *)SCREEN_ALARM_OFF_STRING,
                                     AUTO_STRING_LENGTH, 64, 50, OPAQUE_TEXT);
       }
     }
 
     if (isEarthquake) {
-      Graphics_drawStringCentered(&g_sContext, (int8_t *)SCREEN_EARTHQUAKE_STRING,
+      Graphics_drawStringCentered(&g_sContext,
+                                  (int8_t *)SCREEN_EARTHQUAKE_STRING,
                                   AUTO_STRING_LENGTH, 64, 70, OPAQUE_TEXT);
     } else {
-      Graphics_drawStringCentered(&g_sContext, (int8_t *)SCREEN_NO_EARTHQUAKE_STRING,
+      Graphics_drawStringCentered(&g_sContext,
+                                  (int8_t *)SCREEN_NO_EARTHQUAKE_STRING,
                                   AUTO_STRING_LENGTH, 64, 70, OPAQUE_TEXT);
     }
     char tempString[10];
     sprintf(tempString, "Temp: %.2f", temperature);
     Graphics_drawStringCentered(&g_sContext, (int8_t *)tempString,
                                 AUTO_STRING_LENGTH, 64, 80, OPAQUE_TEXT);
-  
-    switch(door_current_state){
-      case DOOR_STATE_OPEN:
-      case DOOR_STATE_FORCE_OPEN:
-        Graphics_drawStringCentered(&g_sContext, (int8_t *)SCREEN_DOOR_OPEN_STRING,
-                                    AUTO_STRING_LENGTH, 64, 110, OPAQUE_TEXT);
-        break;
-      case DOOR_STATE_CLOSE:
-        Graphics_drawStringCentered(&g_sContext, (int8_t *)SCREEN_DOOR_CLOSE_STRING,
-                                    AUTO_STRING_LENGTH, 64, 110, OPAQUE_TEXT);
-        break;
+
+    switch (door_current_state) {
+    case DOOR_STATE_OPEN:
+    case DOOR_STATE_FORCE_OPEN:
+      Graphics_drawStringCentered(&g_sContext,
+                                  (int8_t *)SCREEN_DOOR_OPEN_STRING,
+                                  AUTO_STRING_LENGTH, 64, 110, OPAQUE_TEXT);
+      break;
+    case DOOR_STATE_CLOSE:
+      Graphics_drawStringCentered(&g_sContext,
+                                  (int8_t *)SCREEN_DOOR_CLOSE_STRING,
+                                  AUTO_STRING_LENGTH, 64, 110, OPAQUE_TEXT);
+      break;
     }
 
     // Graphics_clearDisplay(&g_sContext);
     Graphics_drawStringCentered(&g_sContext, (int8_t *)"Embedded Project:",
                                 AUTO_STRING_LENGTH, 64, 20, OPAQUE_TEXT);
-  
   }
-
-
-  
 }
