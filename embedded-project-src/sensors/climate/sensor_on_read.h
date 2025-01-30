@@ -5,15 +5,13 @@
 #include "features/climate/events.h"
 #include "features/climate/fsm.h"
 
+//reference constants
 #define LOWEST_TEMPERATURE 19
 #define HIGHEST_TEMPERATURE 25
 #define IDLE_TEMPERATURE 22
 
-//combine event and temperature 
+//Capture the current temperature and trigger the corresponding event
 void climate_sensor_on_read(float temperature);
-
-
-
 
 
 
