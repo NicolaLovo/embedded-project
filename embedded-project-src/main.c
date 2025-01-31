@@ -113,14 +113,10 @@ void main(void) {
       (*climate_fsm[climate_current_state].state_function)();
     }
 
-    /**
-     * Polling: not the best solution but for now we do not know how to use
-     * interrupts
-     */
+
     lux = read_light();
     temperature = climate_sensor_hw_readTemperature();
     light_on_read(lux);
-    // printf("Temperature: %.2f\n", temperature);
     climate_sensor_on_read(temperature);
 
     contact = voltage_is_high();
