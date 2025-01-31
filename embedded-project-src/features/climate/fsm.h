@@ -1,6 +1,7 @@
 #ifndef __CLIMATE_FSM_H__
 #define __CLIMATE_FSM_H__
 
+//state in whitch the fsm can be 
 typedef enum{
     CLIMATE_STATE_INIT,
     CLIMATE_STATE_RADIATOR,
@@ -9,6 +10,7 @@ typedef enum{
     CLIMATE_NUM_STATES
 }Climate_state;
 
+// struct of state machine which associates states with their functions 
 typedef struct {
     Climate_state state;
     void(*state_function)(void);

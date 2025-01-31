@@ -22,9 +22,10 @@ void fn_climate_airconditioning(){
 
 }
 
+//inizalization of current state 
 extern Climate_state climate_current_state = CLIMATE_STATE_INIT;
 
-
+//State machine which associates states with their functions
 extern Climate_stateMachine climate_fsm[]={
     {CLIMATE_STATE_INIT,fn_climate_init},
     {CLIMATE_STATE_RADIATOR,fn_climate_radiator},

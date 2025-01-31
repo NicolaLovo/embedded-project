@@ -4,7 +4,7 @@
 #include <stdbool.h>
 
 /**
- * Hw-independent function to be called by the voltage isr
+ * Hw-independent function to be called by the voltage is
  * Calls accordingly the events to mutate the fsm of the features
  */
 
