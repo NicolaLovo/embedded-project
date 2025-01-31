@@ -47,7 +47,7 @@ The LCD has been used to display real-time events.
 
 -[Presentation](https://docs.google.com/presentation/d/1W6sGwKaeywJN_hmt3aGy_PK22Og2mWv0d_z1uNpjzVE/edit?usp=drivesdk)
 
--[Video presentation]()
+-[Video presentation](https://youtu.be/9xOE8SbTiaM?si=zp56sMGeyDPLHiY1)
 
 ## Requirements
 
