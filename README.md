@@ -63,7 +63,7 @@ The LCD has been used to display real-time events.
     - button S2
     - voltmeter
 - Breadboard
-- 2 LEDs
+- 3 LEDs
 - 1 servo motor
 - 1 buzzer
 - wires
