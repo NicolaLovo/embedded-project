@@ -161,9 +161,9 @@ void main(void) {
                                   AUTO_STRING_LENGTH, 64, 70, OPAQUE_TEXT);
     }
     char tempString[10];
-    sprintf(tempString, "Temp: %.2f", temperature);
-    Graphics_drawStringCentered(&g_sContext, (int8_t *)tempString,
-                                AUTO_STRING_LENGTH, 64, 80, OPAQUE_TEXT);
+    sprintf(tempString, "Temp: %.2f°C", temperature);
+    Graphics_drawStringCentered(&g_sContext, "                ", AUTO_STRING_LENGTH, 64, 80, OPAQUE_TEXT);
+    Graphics_drawStringCentered(&g_sContext, (int8_t *)tempString, AUTO_STRING_LENGTH, 64, 80, OPAQUE_TEXT);
 
     switch (door_current_state) {
     case DOOR_STATE_OPEN:
