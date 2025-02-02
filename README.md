@@ -2,7 +2,7 @@
 
 - [Sylvanian Tech Family](#sylvanian-tech-family)
   - [Project Description](#project-description)
-    - [What's better than a domotic house? A Sylvanian Family domotic house!](#whats-better-than-a-domotic-house-a-sylvanian-family-domotic-house)
+      - [What's better than a domotic house? A Sylvanian Family domotic house!](#whats-better-than-a-domotic-house-a-sylvanian-family-domotic-house)
     - [Presentation and video](#presentation-and-video)
   - [Requirements](#requirements)
     - [Hardware](#hardware)
@@ -12,7 +12,7 @@
     - [Building the project](#building-the-project)
     - [Burning and running the project](#burning-and-running-the-project)
   - [Team members](#team-members)
-  - [Project documentation](#project-documentation)
+  - [Project diagram](#project-diagram)
   - [Project layout](#project-layout)
 
 ## Project Description
@@ -45,9 +45,11 @@ The LCD has been used to display real-time events.
 
 ### Presentation and video
 
--[Presentation](https://docs.google.com/presentation/d/1W6sGwKaeywJN_hmt3aGy_PK22Og2mWv0d_z1uNpjzVE/edit?usp=drivesdk)
+- [Presentation](https://docs.google.com/presentation/d/1W6sGwKaeywJN_hmt3aGy_PK22Og2mWv0d_z1uNpjzVE/edit?usp=drivesdk)
 
--[Video presentation](https://youtu.be/9xOE8SbTiaM?si=zp56sMGeyDPLHiY1)
+- [Pdf presentation](./docs/Presentation_Sylvanian_Tech_Family.pdf)
+
+- [Video presentation](https://youtu.be/9xOE8SbTiaM?si=zp56sMGeyDPLHiY1)
 
 ## Requirements
 
@@ -121,9 +123,9 @@ Every team member is responsible for the whole project, despite individual contr
 - Lovo Nicola (coordinator) designed house front door, its servo motor and light sensor
 - Prati Matilde designed house climate system and handled temperature sensor outputs
 
-## Project documentation
+## Project diagram
 
-- [Project diagram](https://drive.google.com/file/d/1CTdshm4JGh88nT_NAp6nMx0BeLaoV-mB/view?usp=sharing)
+<img src="./docs/drawio_project_FSM.png" alt="drawing" height="500"/>
 
 ## Project layout
 
